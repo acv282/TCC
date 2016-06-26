@@ -1,0 +1,35 @@
+// Javascript para retorno de um projeto atraves de AJAX (Controller > ajax_view)
+//alert("<%= @project.nome %>");
+
+// Prepara alguns valores
+var status = 'Unknown';
+switch("<%= @project.andamento %>")
+{
+  case 'I':
+    status = 'Started';
+  break;
+    
+  case 'E':
+    status = 'Ongoing';
+  break;
+  
+  case 'C':
+    status = 'Completed';
+  break;
+    
+  default:
+    status = 'Unknown';
+  break;
+}
+
+// Preenche os campos na tela antes de exibir o modal
+$("#p_legend").html("Projeto");
+$("#p_name").html("<%= @project.nome %>");
+$("#p_coord").html("<%= @project.user.nomeExibicao %>");
+$("#p_descr").html("<%= j simple_format(@project.descricao) %>");
+$("#p_dev").html(status);
+
+
+// Na view ./app/views/projects/index.html.erb existe uma DIV oculta que será exibida como modal quando este
+// script retornar para o navegador
+$("#modal_projeto").dialog("open");

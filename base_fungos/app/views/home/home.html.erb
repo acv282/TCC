@@ -1,0 +1,5 @@
+<h2>Home</h2>
+
+<% if !current_user %>
+If you are a project coordinator and want to use the system to your own researches, you can <%= link_to "click here to ask for a coordinator role", new_coord_path %>.
+<%end%>

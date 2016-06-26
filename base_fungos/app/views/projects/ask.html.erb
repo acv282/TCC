@@ -1,0 +1,76 @@
+<h2>Ask for access in this project</h2>
+
+<%= form_for @team do |f| %>
+  
+  <!-- Tratamento de erros -->
+  <% if @team.errors.any? %>
+    <div class="error_messages">
+      <p>Please, note that:</p>
+      <ul>
+        <% @team.errors.each_with_index do |msg, i| %>
+          <li><%= msg[1] %></li>
+        <% end %>
+      </ul>
+      <!-- Erros completos -->
+      <!--
+      <% @team.errors.full_messages.each do |m| %>
+        <%= m %>
+      <% end %> 
+      -->
+    </div>
+  <% end %>
+  
+  
+  <!-- Campos informativos -->
+  <table>
+    <tr>
+      <td class="label">Project Name:</td>
+      <td><%= @project.nome %></td>
+    </tr>
+    
+    <tr>
+      <td class="label">Project Coordinator:</td>
+      <td><%= @project.user.nomeExibicao %></td>
+    </tr>
+    
+    <tr>
+      <td class="label">Project Creation Date:</td>
+      <td><%= @project.dt_ini %></td>
+    </tr>
+    
+  </table>
+  
+  
+  <!-- Campos do formulario -->
+  <table>
+  
+    <tr>
+      <td class="label">Your Name:</td>
+      <td>
+        <%= f.text_field :nome %>
+        <%= f.hidden_field :project_id, :value => @project.id %>
+      </td>
+    </tr>
+    
+    <tr>
+      <td class="label">Reasons why you want to join this project</td>
+      <td><%= f.text_area :descricao %></td>
+    </tr>
+
+    <tr>
+      <td class="label">Join as...</td>
+      <td><%= f.select(:team_role_id, options_for_select([ ['Researcher',1],['Guest',2] ]) ) %></td>
+    </tr>
+    
+    <tr>
+      <td class="label"></td>
+      <td><%= f.submit "Ask access" %></td>
+    </tr>
+    
+  </table>
+  
+<%end%>
+
+<br/><br/>
+<button class="button" onclick="back()">Back</button>
+<br/><br/> 

@@ -1,0 +1,43 @@
+<h2>Create a New Project</h2>
+
+<%= form_for @project do |f| %>
+  
+  <!-- Tratamento de erros -->
+  <% if @project.errors.any? %>
+    <div class="error_messages">
+      <p>Please, note that:</p>
+      <ul>
+        <% @project.errors.each_with_index do |msg, i| %>
+          <li><%= msg[1] %></li>
+        <% end %>
+      </ul>
+      <!-- Erros completos -->
+      <!--
+      <% @project.errors.full_messages.each do |m| %>
+        <%= m %>
+      <% end %> 
+      -->
+    </div>
+  <% end %>
+  
+  
+  <!-- Campos do formulario -->
+  <%= f.label "Project Name" %><br/>
+  <%= f.text_field :nome %><br/><br/>
+  
+  <%= f.label "Description" %><br/>
+  <%= f.text_area :descricao %><br/><br/>
+
+  <%= f.label "Start Date" %><br/>
+  <%= f.date_field :dt_ini, :readonly => true %><br/><br/>
+  
+  <%= f.label "Development Status" %><br/>
+  <%= select_tag(:andamento, options_for_select([ ['Started','I'],['Ongoing','E'],['Completed','C'] ]) ) %><br/><br/>
+  
+  <p class="button"><%= f.submit %></p>
+  
+<%end%>
+
+<br/><br/>
+<button class="button" onclick="back()">Back</button>
+<br/><br/>  

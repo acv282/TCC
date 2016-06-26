@@ -1,0 +1,18 @@
+/* Arquivo de estilos personalizados */
+
+#tudo
+{
+  margin:           0 auto;
+  padding:          0 20px;
+}
+
+#flash_notice
+{
+  margin-bottom:    4px;
+  padding:          8px;
+}
+
+td
+{
+  vertical-align:   top;
+}

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyText
+  descricao: MyText
+  dt_ini: 2016-06-25
+  status_ace: false
+  andamento: MyText
+  user_id: 1
+
+two:
+  nome: MyText
+  descricao: MyText
+  dt_ini: 2016-06-25
+  status_ace: false
+  andamento: MyText
+  user_id: 1

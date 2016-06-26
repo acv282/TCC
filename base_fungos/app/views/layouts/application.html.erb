@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Base Fungos</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'jquery-ui.css', 'jquery-ui.theme.css' %>
+  <%= stylesheet_link_tag    'custom.css' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'jquery-1.12.4.min.js', 'jquery-ui.min.js' %>
+  <%= javascript_include_tag 'custom.js' %>
+  <%= csrf_meta_tags %>
+  
+  <!-- Correção para JQueryUI -->
+  <style>
+	body{
+		font: 62.5% "Trebuchet MS", sans-serif;
+		margin: 50px;
+	}
+	.demoHeaders {
+		margin-top: 2em;
+	}
+	#dialog-link {
+		padding: .4em 1em .4em 20px;
+		text-decoration: none;
+		position: relative;
+	}
+	#dialog-link span.ui-icon {
+		margin: 0 5px 0 0;
+		position: absolute;
+		left: .2em;
+		top: 50%;
+		margin-top: -8px;
+	}
+	#icons {
+		margin: 0;
+		padding: 0;
+	}
+	#icons li {
+		margin: 2px;
+		position: relative;
+		padding: 4px 0;
+		cursor: pointer;
+		float: left;
+		list-style: none;
+	}
+	#icons span.ui-icon {
+		float: left;
+		margin: 0 4px;
+	}
+	.fakewindowcontain .ui-widget-overlay {
+		position: absolute;
+	}
+	select {
+		width: 200px;
+	}
+	</style>
+</head>
+
+<body>
+
+  <!-- Mensagens de aviso -->
+  <% if flash[:notice] %>
+    <div id="flash_notice" class="ui-state-highlight ui-corner-all">
+       <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+  <div id="tudo" class="ui-widget ui-widget-content ui-helper-clearfix ui-corner-all">
+    
+    <div id="logo">
+      <h1>
+      Programa de Pós-Graduação<br/>
+      em Bioinformática
+      </h1>
+    </div>
+   
+   
+    <!-- Menu -->
+    <div id="tabs" class="ui-widget ui-tabs ui-widget-content ui-corner-all">
+    
+      <!-- Aba selecionada ou nao -->
+      <% @link = "ui-state-default ui-corner-top" %>
+      <% @link_sel = "ui-state-default ui-corner-top ui-tabs-active ui-state-active" %>
+    
+      <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-top">
+      
+        <!-- Home -->
+        <li class="<%= (params[:controller]=='home')?@link_sel:@link %>" >
+          <%= link_to "Home", home_path, :class => "ui-tabs-anchor" %>
+        </li>
+        
+        <!-- Projects -->
+        <li class="<%= (params[:controller]=='projects')?@link_sel:@link %>">
+          <%= link_to "Projects", projects_path, :class => "ui-tabs-anchor" %>
+        </li>
+        
+        
+        <!-- Abas Condicionais / Depende do usuário-->
+        
+        <!-- Coordinator -->
+        <% if current_user && current_user.user_role.id == 2 %>
+        <li class="<%= (params[:controller]=='users' && params[:action]=='coord')?@link_sel:@link %>">
+          <%= link_to "Coordinator", coord_path, :class => "ui-tabs-anchor" %>
+        </li>
+        <% end %>
+        
+      </ul>
+      
+      
+      <!-- Controles de sessao -->
+      <div id="link_login">
+        <% if current_user %>
+          <b><%= current_user.nomeExibicao %></b> | <%= link_to "Logout", log_out_path %>
+          <!-- <%= current_user.permissao %> -->
+        <% else %>
+          <a href="#" id="login_link">Login</a> | <%= link_to "Sign up", sign_up_path %>
+        <% end %>
+      </div>
+    
+    
+      <!-- Conteudo gerado pelo Ruby -->
+      <%= yield %>
+
+    </div>
+    
+    <br/><br/>
+    
+  </div>
+  
+  
+  <% if !current_user %>
+    <!-- Popup de login / JQuery UI modal -->
+    <div id="modal_login">
+      <%= form_tag sessions_path do %>
+        <p>
+          <%= label_tag "Username" %>
+          <%= text_field_tag :nomeUsuario, params[:nomeUsuario] %><br/>
+        </p>
+        <p>
+          <%= label_tag "Password" %>
+          <%= password_field_tag :senha, params[:senha] %><br/>
+        </p>
+        <p class="button"><%= submit_tag "Login" %></p>
+      <% end%>
+    </div>
+  <% end %>
+
+</body>
+
+<script type="text/javascript">
+  init();
+</script>
+
+</html>

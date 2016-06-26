@@ -1,0 +1,77 @@
+<h2>Projects</h2>
+
+<br/>
+
+<fieldset>
+  <legend>Genome Index</legend>
+  <% if @projects %> 
+
+    <table id="table_projects">
+    
+      <tr>
+        <th>Project</th>
+        <th>Oganisms</th>
+        <th>Coordinator</th>
+        <th>Access</th>
+      </tr>
+      
+      <% @projects.each do |prj| %>
+      <tr>
+        <td><%= link_to prj.nome, ajax_view_path(:id => prj.id), :remote => true %></td>
+        <td><input type="checkbox" disabled="disabled"/></td>
+        <td><%= prj.user.nomeExibicao %></td>
+        <% if current_user && prj.user_id != current_user.id %>
+          <% if @teams.detect{|t| t["project_id"] == prj.id} %>
+            <% if @teams.detect{|t| t["status_ace"] == true} %>
+              <td><i>You are already in this project</i></td>
+            <%else%>
+              <td><i>Waiting for approval</i></td>
+            <%end%>
+          <%else%>
+            <td><%= button_to "Ask Access", prj_ask_path(:id => prj.id), :method => :get, :class => "button" %></td>
+          <%end%>
+        <%else%>
+          <% if !current_user %>
+            <td><i>Please login to ask for access</i></td> 
+          <%end%>
+        <%end%>
+      </tr>
+      <% end %>
+      
+    </table>
+
+  <% else %>
+
+    <h4>No projects available yet...</h4>
+
+  <% end %>
+</fieldset>
+
+<br/>
+
+<!-- Modal oculto / Exibe detalhes de um projeto específico -->
+<div id="modal_projeto" title="Project Details">
+  <fieldset>
+    <legend id="p_legend"></legend>
+    <table>
+      <tr>
+        <td class="titulo">Project Name:</td>
+        <td class="valor" id="p_name"></td>
+      </tr>
+      <tr>
+        <td class="titulo">Coordinator:</td>
+        <td class="valor" id="p_coord"></td>
+      </tr>
+      <tr>
+        <td class="titulo">Description:</td>
+        <td class="valor" id="p_descr"></td>
+      </tr>
+      <tr>
+        <td class="titulo">Development Status:</td>
+        <td class="valor" id="p_dev"></td>
+      </tr>
+    </table>
+  </fieldset>
+</div>
+
+<br/>

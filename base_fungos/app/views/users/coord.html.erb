@@ -1,0 +1,170 @@
+<h2>Coordinator Administration Page</h2>
+
+<!-- Painel de ações do coordenador -->
+<table>
+
+  <!-- Primeira linha -->
+  <tr>
+  
+    <!-- Meus projetos -->
+    <td class="bloco_acao">
+    
+      <fieldset>
+        <legend>My Projects</legend>
+        
+        <% if @projects && @projects.count > 0 %>
+          <table id="table_coord_proj">
+            <% @projects.each do |prj| %>
+            <tr>
+              <td><%= prj.nome %></td>
+              <td><%= button_to "Edit", prj_edit_path(:id => prj.id), :method => :get, :class => "button" %></td>
+            </tr>
+            <%end%>
+          </table>
+        <%else%>
+          <h4>You currently have no projects!</h4>
+        <%end%>
+      
+        <br/>
+        <%= button_to "Submit a New Project", prj_new_path, :method => :get, :class => "button" %>
+        <br/>
+      
+      </fieldset>
+    </td>
+    
+    <!-- Meus pesquisadores -->
+    <td class="bloco_acao">
+    
+    <fieldset>
+        <legend>My Researchers</legend>
+        
+        <% if @equipesCoord && @equipesCoord.count > 0 %>
+          <table id="table_coord_proj">
+            <% @equipesCoord.each do |usCoord| %>
+            <tr>
+              <td>
+                <% if !usCoord.status_ace %>
+                <span class="red">(Removed)</span>
+                <%end%>
+                <%= usCoord.user.nomeExibicao %> <i>at Project:</i> <%= usCoord.project.nome %>
+              </td>
+              <td><%= button_to "Edit", team_edit_c_path(:id => usCoord.id), :method => :get, :class => "button" %></td>
+            </tr>
+            <%end%>
+          </table>
+        <% else %>
+          <h4>You currently have no researchers!</h4>
+        <%end%>
+        
+      </fieldset>
+      <br/>
+      
+    </td>
+    
+  </tr>
+  
+  <!-- Segunda linha -->
+  <tr>
+  
+    <!-- Meus arquivos -->
+    <td>
+    
+      <fieldset>
+        <legend>My Files</legend>
+        
+        <% if false %>
+          <table id="table_coord_proj">
+            <% @projects.each do |prj| %>
+            <tr>
+              <td><%= prj.nome %></td>
+              <td><%= button_to "Edit", prj_edit_path(:id => prj.id), :method => :get, :class => "button" %></td>
+            </tr>
+            <%end%>
+          </table>
+        <%else%>
+          <h4>No files submitted yet</h4>
+        <%end%>
+      
+      </fieldset>
+      <br/>
+    </td>
+    
+    <!-- Novos pesquisadores -->
+    <td>
+    
+      <fieldset>
+        <legend>New Researchers</legend>
+        
+        <% if @teamNovos && @teamNovos.count > 0 %>
+          <table id="table_coord_proj">
+            <% @teamNovos.each do |t| %>
+            <tr>
+              <td><%= t.user.nomeExibicao %> <i>at Project:</i> <%= t.project.nome %></td>
+              <td><%= button_to "Edit", team_edit_a_path(:id => t.id), :method => :get, :class => "button" %></td>
+            </tr>
+            <%end%>
+          </table>
+        <%else%>
+          <h4>No new users to review</h4>
+        <%end%>
+      
+      </fieldset>
+      <br/>
+    
+    </td>
+    
+  </tr>
+  
+  <!-- Terceira linha -->
+  <tr>
+  
+    <!-- Minhas equipes -->
+    <td>
+    
+      <fieldset>
+        <legend>My Teams | All</legend>
+        
+        <% if @myTeams && @myTeams.count > 0 %>
+          <table id="table_coord_proj">
+            <% @myTeams.each do |m| %>
+            <tr>
+              <td>[<%= m.team_role.nivel %>] - <%= m.user.nomeExibicao %> <i>at Project:</i> <%= m.project.nome %></td>
+              <td><%= button_to "Edit", team_edit_c_path(:id => m.id), :method => :get, :class => "button" %></td>
+            </tr>
+            <%end%>
+          </table>
+        <%else%>
+          <h4>You have no teams</h4>
+        <%end%>
+      
+      </fieldset>
+      <br/>
+    </td>
+  
+  
+    <!-- Novos convidados -->
+    <td>
+    
+      <fieldset>
+        <legend>New Guests</legend>
+        
+        <% if @newGuests && @newGuests.count > 0 %>
+          <table id="table_coord_proj">
+            <% @newGuests.each do |n| %>
+            <tr>
+              <td><%= n.user.nomeExibicao %> <i>at Project:</i> <%= n.project.nome %></td>
+              <td><%= button_to "Edit", team_edit_a_path(:id => n.id), :method => :get, :class => "button" %></td>
+            </tr>
+            <%end%>
+          </table>
+        <%else%>
+          <h4>You have no new guests</h4>
+        <%end%>
+      
+      </fieldset>
+      <br/>
+    </td>
+    
+  </tr>
+  
+</table>

@@ -1,0 +1,26 @@
+<h2>Teams</h2>
+<% if @teams && @teams.count > 0 %>
+  
+  <table border="0" cellspacing="0" cellpadding="0">
+  
+    <tr>
+      <th>ID</th>
+      <th>Project</th>
+      <th>Person</th>
+      <th>Role</th>
+    </tr>
+    
+    <% @teams.each do |team| %>
+    <tr>
+      <td><%= team.id %></td>
+      <td><%= team.project.nome %></td>
+      <td><%= team.user.nomeExibicao %></td>
+      <td><%= team.team_role.nivel %></td>
+    </tr>
+    <%end%>
+  
+  </table>
+  
+<%else%>
+  <h4>No teams assembled yet</h4>
+<%end%>
