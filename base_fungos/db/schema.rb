@@ -11,10 +11,65 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160625065933) do
+ActiveRecord::Schema.define(version: 20160627030232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "fasta_logs", force: :cascade do |t|
+    t.integer  "organism_id"
+    t.text     "descricao"
+    t.binary   "stream"
+    t.datetime "data"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "fasta_logs", ["organism_id"], name: "index_fasta_logs_on_organism_id", using: :btree
+
+  create_table "gbk_logs", force: :cascade do |t|
+    t.integer  "organism_id"
+    t.text     "descricao"
+    t.binary   "stream"
+    t.datetime "data"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "gbk_logs", ["organism_id"], name: "index_gbk_logs_on_organism_id", using: :btree
+
+  create_table "gff_logs", force: :cascade do |t|
+    t.integer  "organism_id"
+    t.text     "descricao"
+    t.binary   "stream"
+    t.datetime "data"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "gff_logs", ["organism_id"], name: "index_gff_logs_on_organism_id", using: :btree
+
+  create_table "organism_statuses", force: :cascade do |t|
+    t.text     "descricao"
+    t.text     "visibilidade"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "organisms", force: :cascade do |t|
+    t.integer  "project_id"
+    t.integer  "organism_status_id"
+    t.text     "nome"
+    t.text     "descricao"
+    t.boolean  "status_ace"
+    t.binary   "stream_fasta"
+    t.binary   "stream_gbk"
+    t.binary   "stream_gff"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "organisms", ["project_id"], name: "index_organisms_on_project_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
     t.text     "nome"
@@ -65,5 +120,7 @@ ActiveRecord::Schema.define(version: 20160625065933) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
+
+  add_index "users", ["u_id"], name: "idx_u_id", using: :btree
 
 end

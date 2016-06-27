@@ -1,0 +1,2 @@
+module FastaLogsHelper
+end

@@ -13,7 +13,7 @@ class TeamsController < ApplicationController
     
     @team = Team.new(ask_params)
     @team.user_id    = current_user.id
-    @team.status_ace = false 
+    @team.status_ace = false
     
     if @team.save
       redirect_to root_url, notice: "Your request to join that project was sent, now you have to wait for the coordinator to accept you."

@@ -18,11 +18,15 @@
       <% @projects.each do |prj| %>
       <tr>
         <td><%= link_to prj.nome, ajax_view_path(:id => prj.id), :remote => true %></td>
-        <td><input type="checkbox" disabled="disabled"/></td>
+        <% if prj.organisms.count > 0 %>
+          <td><input type="checkbox" disabled="disabled" checked="checked"/></td>
+        <%else%>
+          <td><input type="checkbox" disabled="disabled"/></td>
+        <%end%>
         <td><%= prj.user.nomeExibicao %></td>
         <% if current_user && prj.user_id != current_user.id %>
           <% if @teams.detect{|t| t["project_id"] == prj.id} %>
-            <% if @teams.detect{|t| t["status_ace"] == true} %>
+            <% if @teams.detect{|t| t["status_ace"] == true && t["project_id"] == prj.id} %>
               <td><i>You are already in this project</i></td>
             <%else%>
               <td><i>Waiting for approval</i></td>

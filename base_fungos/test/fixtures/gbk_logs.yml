@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  organism_id: 1
+  versao: 1
+  descricao: MyText
+  stream: 
+  data: 2016-06-26 11:20:01
+
+two:
+  organism_id: 1
+  versao: 1
+  descricao: MyText
+  stream: 
+  data: 2016-06-26 11:20:01

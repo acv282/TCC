@@ -1,0 +1,2 @@
+class GbkLogsController < ApplicationController
+end

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'organisms/new'
+
   get 'team_roles/new'
 
   get 'teams/new'
@@ -42,6 +44,8 @@ Rails.application.routes.draw do
 	get "coord"             => "users#coord",         :as => "coord"
 	get "new_coord"         => "users#new_coord",     :as => "new_coord"
 	get "home"              => "home#home",           :as => "home"
+	get "new_org/:id"       => "organisms#new",       :as => "new_org"
+	get "edit_org/:id"      => "organisms#edit",      :as => "edit_org"
 	
 	
 	# Formulários multi-versão
@@ -67,6 +71,7 @@ Rails.application.routes.draw do
   resources :projects
   resources :team_roles
   resources :teams
+  resources :organisms
 
   # Example resource route with options:
   #   resources :products do

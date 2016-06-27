@@ -46,6 +46,7 @@ class UsersController < ApplicationController
   end
   
   
+  # Metodo que retorna todos os dados da aba Coordenador
   def coord
   
     # Apenas o coordenador pode ver o conteudo desta View
@@ -91,6 +92,12 @@ class UsersController < ApplicationController
       end
       
     end
+    
+    # Vasculha os projetos do coordenador para trazer os
+    # organismos (arquivos)
+    #@projects.each do |p|
+    #  @myFiles.push(Organism.find(p.))
+    #end
    
   end
   

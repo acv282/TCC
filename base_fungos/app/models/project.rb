@@ -2,6 +2,7 @@ class Project < ActiveRecord::Base
 
   # Relações de dependência
   belongs_to :user
+  has_many   :organisms
 
   # Filtros
   # Projetos do coordenador (por id)

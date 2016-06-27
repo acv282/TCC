@@ -13,7 +13,7 @@
         <legend>My Projects</legend>
         
         <% if @projects && @projects.count > 0 %>
-          <table id="table_coord_proj">
+          <table id="table_coord_projects">
             <% @projects.each do |prj| %>
             <tr>
               <td><%= prj.nome %></td>
@@ -39,7 +39,7 @@
         <legend>My Researchers</legend>
         
         <% if @equipesCoord && @equipesCoord.count > 0 %>
-          <table id="table_coord_proj">
+          <table id="table_coord_researchers">
             <% @equipesCoord.each do |usCoord| %>
             <tr>
               <td>
@@ -72,13 +72,39 @@
       <fieldset>
         <legend>My Files</legend>
         
-        <% if false %>
-          <table id="table_coord_proj">
-            <% @projects.each do |prj| %>
+        <% if @projects %>
+          <table id="table_coord_files">
+          
+            <% @projects.each do |p| %>
             <tr>
-              <td><%= prj.nome %></td>
-              <td><%= button_to "Edit", prj_edit_path(:id => prj.id), :method => :get, :class => "button" %></td>
+              <td><b>Project <%= p.nome %> - Organisms:</b></td>
+              <td></td>
             </tr>
+            
+              <% if p.organisms.count > 0 %> 
+                <% p.organisms.each do |o| %>
+                <tr>
+                  <td><%= o.nome %></td>
+                  <td><%= button_to "Edit", edit_org_path(:id => o.id), :method => :get, :class => "button" %></td>
+                </tr>
+                <%end%>
+              <%else%>
+                <tr>
+                  <td>There is no organisms in this project</td>
+                  <td></td>
+                </tr>
+              <%end%>
+              
+            <tr>
+              <td><%= button_to "Create new organism", new_org_path(:id => p.id), :method => :get, :class => "button" %></td>
+              <td></td>
+            </tr>
+            
+            <tr>
+              <td><br/></td>
+              <td></td>
+            </tr>
+            
             <%end%>
           </table>
         <%else%>
@@ -96,7 +122,7 @@
         <legend>New Researchers</legend>
         
         <% if @teamNovos && @teamNovos.count > 0 %>
-          <table id="table_coord_proj">
+          <table id="table_coord_new_researchers">
             <% @teamNovos.each do |t| %>
             <tr>
               <td><%= t.user.nomeExibicao %> <i>at Project:</i> <%= t.project.nome %></td>
@@ -125,7 +151,7 @@
         <legend>My Teams | All</legend>
         
         <% if @myTeams && @myTeams.count > 0 %>
-          <table id="table_coord_proj">
+          <table id="table_coord_teams">
             <% @myTeams.each do |m| %>
             <tr>
               <td>[<%= m.team_role.nivel %>] - <%= m.user.nomeExibicao %> <i>at Project:</i> <%= m.project.nome %></td>
@@ -149,7 +175,7 @@
         <legend>New Guests</legend>
         
         <% if @newGuests && @newGuests.count > 0 %>
-          <table id="table_coord_proj">
+          <table id="table_coord_guests">
             <% @newGuests.each do |n| %>
             <tr>
               <td><%= n.user.nomeExibicao %> <i>at Project:</i> <%= n.project.nome %></td>

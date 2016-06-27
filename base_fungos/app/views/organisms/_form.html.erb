@@ -1,0 +1,49 @@
+<%= form_for(@organism) do |f| %>
+  <% if @organism.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@organism.errors.count, "error") %> prohibited this organism from being saved:</h2>
+
+      <ul>
+      <% @organism.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :project_id %><br>
+    <%= f.text_field :project_id %>
+  </div>
+  <div class="field">
+    <%= f.label :organism_status_id %><br>
+    <%= f.text_field :organism_status_id %>
+  </div>
+  <div class="field">
+    <%= f.label :nome %><br>
+    <%= f.text_area :nome %>
+  </div>
+  <div class="field">
+    <%= f.label :descricao %><br>
+    <%= f.text_area :descricao %>
+  </div>
+  <div class="field">
+    <%= f.label :status_ace %><br>
+    <%= f.check_box :status_ace %>
+  </div>
+  <div class="field">
+    <%= f.label :stream_fasta %><br>
+    <%= f.text_field :stream_fasta %>
+  </div>
+  <div class="field">
+    <%= f.label :stream_gbk %><br>
+    <%= f.text_field :stream_gbk %>
+  </div>
+  <div class="field">
+    <%= f.label :stream_gff %><br>
+    <%= f.text_field :stream_gff %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

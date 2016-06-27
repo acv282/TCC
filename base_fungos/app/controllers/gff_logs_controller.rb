@@ -1,0 +1,2 @@
+class GffLogsController < ApplicationController
+end

@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @organism.project %>
+</p>
+
+<p>
+  <strong>Organism status:</strong>
+  <%= @organism.organism_status %>
+</p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @organism.nome %>
+</p>
+
+<p>
+  <strong>Descricao:</strong>
+  <%= @organism.descricao %>
+</p>
+
+<p>
+  <strong>Status ace:</strong>
+  <%= @organism.status_ace %>
+</p>
+
+<p>
+  <strong>Stream fasta:</strong>
+  <%= @organism.stream_fasta %>
+</p>
+
+<p>
+  <strong>Stream gbk:</strong>
+  <%= @organism.stream_gbk %>
+</p>
+
+<p>
+  <strong>Stream gff:</strong>
+  <%= @organism.stream_gff %>
+</p>
+
+<%= link_to 'Edit', edit_organism_path(@organism) %> |
+<%= link_to 'Back', organisms_path %>

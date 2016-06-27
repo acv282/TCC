@@ -1,0 +1,2 @@
+module GffLogsHelper
+end

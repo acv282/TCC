@@ -1,0 +1,2 @@
+class FastaLogsController < ApplicationController
+end
