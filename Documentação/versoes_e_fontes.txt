@@ -1,0 +1,116 @@
+Fontes:
+http://www.devmedia.com.br/ruby-on-rails-implementando-autenticacao-de-usuario/32124
+http://www.railsdeveloper.net/2010/06/rails-and-jquery-how-to-integrate-jquery-ui-into-your-rails-app/
+https://agilewarrior.wordpress.com/2014/04/30/how-include-jquery-ui-in-your-rails-app/
+https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-ruby-on-rails-application-on-ubuntu-14-04
+http://guides.rubyonrails.org/
+
+
+Imagens:
+http://eletrica.ufpr.br/graduacao/imagens/ufpr2.jpg
+
+
+Bibliotecas e frameworks:
+http://bioruby.org
+http://rubyonrails.org
+http://jqueryui.com
+http://jquery.com
+
+
+Versões -------------------------------------------------
+
+Ruby:
+ruby 2.3.0p0 (2015-12-25) [x86_64-linux-gnu]
+
+
+Rails:
+Rails 4.2.6
+
+
+Postgres:
+pg util-linux 2.27.1
+(PostgreSQL) 9.5.3
+
+
+Gems instaladas:
+bcrypt (3.1.11)
+bio (1.5.0)
+jquery-rails (4.1.1)
+jquery-ui-rails (5.0.5)
+json (1.8.3)
+pg (0.18.4)
+rails (4.2.6)
+rake (11.2.2, 10.5.0)
+schema_to_scaffold (0.7.2)
+sqlite3 (1.3.11)
+
+
+Todas as Gems (se necessário):
+actionmailer (4.2.6)
+actionpack (4.2.6)
+actionview (4.2.6)
+activejob (4.2.6)
+activemodel (4.2.6)
+activerecord (4.2.6)
+activesupport (4.2.6)
+arel (6.0.3)
+bcrypt (3.1.11)
+bigdecimal (1.2.8)
+binding_of_caller (0.7.2)
+bio (1.5.0)
+builder (3.2.2)
+bundler (1.12.5)
+byebug (9.0.5)
+coffee-rails (4.1.1)
+coffee-script (2.4.1)
+coffee-script-source (1.10.0)
+concurrent-ruby (1.0.2)
+debug_inspector (0.0.2)
+did_you_mean (1.0.0)
+erubis (2.7.0)
+execjs (2.7.0)
+globalid (0.3.6)
+i18n (0.7.0)
+io-console (0.4.5)
+jbuilder (2.5.0)
+jquery-rails (4.1.1)
+jquery-ui-rails (5.0.5)
+json (1.8.3)
+loofah (2.0.3)
+mail (2.6.4)
+mime-types (3.1)
+mime-types-data (3.2016.0521)
+mini_portile2 (2.1.0)
+minitest (5.9.0, 5.8.4)
+multi_json (1.12.1)
+net-telnet (0.1.1)
+nokogiri (1.6.8)
+pg (0.18.4)
+pkg-config (1.1.7)
+power_assert (0.2.7)
+psych (2.0.17)
+rack (1.6.4)
+rack-test (0.6.3)
+rails (4.2.6)
+rails-deprecated_sanitizer (1.0.3)
+rails-dom-testing (1.0.7)
+rails-html-sanitizer (1.0.3)
+railties (4.2.6)
+rake (11.2.2, 10.5.0)
+rdoc (4.2.2, 4.2.1)
+sass (3.4.22)
+sass-rails (5.0.4)
+schema_to_scaffold (0.7.2)
+sdoc (0.4.1)
+spring (1.7.1)
+sprockets (3.6.2)
+sprockets-rails (3.0.4)
+sqlite3 (1.3.11)
+test-unit (3.1.7)
+thor (0.19.1)
+thread_safe (0.3.5)
+tilt (2.0.5)
+turbolinks (2.5.3)
+tzinfo (1.2.2)
+uglifier (3.0.0)
+web-console (2.3.0)
