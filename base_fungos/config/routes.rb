@@ -42,14 +42,16 @@ Rails.application.routes.draw do
 	get "team_reassign/:id" => "teams#reassign",      :as => "team_reassign"
 	get "team_assign/:id"   => "teams#assign",        :as => "team_assign"
 	get "coord"             => "users#coord",         :as => "coord"
+	get "admin"             => "users#admin",         :as => "admin"
 	get "new_coord"         => "users#new_coord",     :as => "new_coord"
+	get "coord_approve/:id" => "users#coord_approve", :as => "coord_approve"
 	get "home"              => "home#home",           :as => "home"
 	get "new_org/:id"       => "organisms#new",       :as => "new_org"
 	get "edit_org/:id"      => "organisms#edit",      :as => "edit_org"
 	
 	
 	# Formulários multi-versão
-	post "create_coord"     => "users#create_coord",  :as => "create_coord"
+	post  "create_coord"    => "users#create_coord",  :as => "create_coord"
 	
 	
   # The priority is based upon order of creation: first created -> highest priority.

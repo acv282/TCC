@@ -6,7 +6,14 @@ class User < ActiveRecord::Base
   # Filtros
   # Usuarios do coordenador (por id)
   scope :coord, -> (coord_id) { where u_id: coord_id }
-	
+  # Coordenadores do sistema
+	scope :administradores, -> { where user_role_id: '1' }
+	scope :coordenadores, -> { where user_role_id: '2' }
+	scope :comum, -> { where user_role_id: '3' }
+	scope :inativo, -> { where status_ace: false }
+	scope :ativo, -> { where status_ace: true }
+  
+  
 	# Inicializacao
 	after_initialize :inicializar
 	
@@ -71,7 +78,9 @@ class User < ActiveRecord::Base
 	def antes_salvar
 	
 	  # Chama metodo para criptografar a senha
-	  encrypt_password
+	  if !self.senha_salt
+	    encrypt_password
+	  end
 	  
 	  # Configura alguns atributos
 	  self.nomeUsuario  = nomeUsuario.downcase

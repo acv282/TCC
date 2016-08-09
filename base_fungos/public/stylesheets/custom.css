@@ -1,18 +1,240 @@
 /* Arquivo de estilos personalizados */
 
+/* Override */
+body
+{
+	color:				#444;
+	margin:				0px;
+	background-image:	url('images/bg.png');
+	background-color:	#F0F0F2;
+}
+/**/
+
+
+/* Elementos de página */
+#flash_notice
+{    
+	font-size: 			10pt;
+    text-align: 		center;
+    text-shadow: 		1px 0px 2px rgba(0,0,0,0.13);
+    color: 				#8E6A32;
+	box-shadow: 		0px 4px 5px #000;
+}
+
 #tudo
 {
-  margin:           0 auto;
-  padding:          0 20px;
+	width:				1280px;
+	margin:           	0 auto;
+	margin-top:			40px;
+	margin-bottom:		60px;
+	padding:          	0;
+	background-image:	url("images/ufpr_bg.jpg");
+	background-position: top;
+	box-shadow: 		1px 5px 12px #000;
+    border-width: 		2px;
+}
+
+#tudo h2
+{
+	font-family: 		"Verdana", Sans-serif;
+	font-size: 			16pt;
+	margin: 			0px;
+	color: 				#F3F1EF;
+	text-shadow: 		1px 1px 3px rgba(0,0,0,0.76);
+	margin-bottom: 		20px;
+	background-color: 	#cdd1d3;
+	font-weight: 		normal;
+	box-shadow: 		2px 2px 4px rgba(0,0,0,0.4);
+	border-radius: 		1px;
+	padding: 			2px;
+	padding-left: 		10px;
+}
+
+#yield
+{
+	margin:				0px;
+	padding:			10px;
+	background-color: 	#FFF;
+}
+
+#yield p
+{
+    font-family: 		"Verdana", Sans-serif;
+    font-size: 			9pt;
+    margin: 			6px;
+    color: 				#444;
+    text-shadow: 		1px 1px 1px rgba(0, 0, 0, 0.14);
+}
+
+#yield a:link,
+#yield a:visited
+{
+	color:				#844;
+	text-decoration:	none;
+}
+#yield a:hover
+{
+	color:				#678;
+	text-decoration:	underline;
 }
 
 #flash_notice
 {
-  margin-bottom:    4px;
-  padding:          8px;
+	margin-bottom:    	4px;
+	padding:          	8px;
 }
 
+#logo
+{
+	background-repeat:	no-repeat;
+	width:				1280px;
+	height:				350px;
+}
+
+#logo h1
+{
+	text-align:			right;
+	font-size:			30pt;
+	position:			relative;
+	right:				20px;
+	top:				20px;
+	text-shadow: 		1px 0px 6px #FFF;
+	line-height: 		normal;
+	margin: 			0px;
+}
+
+#link_login
+{
+	height:				28px;
+	text-align:			right;
+	font-size:			10pt;
+	background-color:	#d5e9ff;
+	font-weight:		bold;
+}
+
+#link_login p
+{
+    height: 			24px;
+    line-height: 		24px;
+    margin:				0px;
+    padding-right: 		8px;
+    padding-top: 		2px;
+}
+
+#link_login a:link
+{
+	text-decoration:	none;
+}
+
+#link_login a:hover
+{
+	text-decoration:	underline;
+}
+
+#modal_login
+{
+	
+}
+
+/**/
+
+
+/* Aparência geral de campos de formulário (fonte / tamanho / cor / etc) */
+
+.label,
+.field,
+.field input
+{
+	font-size: 			11pt;
+}
+
+.label
+{
+    vertical-align: 	middle;
+    color: 				#444;
+    font-family: 		"Verdana", Sans Serif;
+	
+}
+
+.field
+{
+    font-family: 		"Verdana", Sans Serif;
+}
+
+.field input
+{
+	padding: 			2px;
+	border:				1px solid #777;
+}
+
+.submit
+{
+	text-align:			right;
+	padding:			6px 0px;
+}
+
+.error_messages
+{
+	background-color: 	#FFDF9A;
+    color:				#C14203;
+    padding: 			6px;
+}
+
+.error_messages ul
+{
+	margin:				0px;
+}
+
+.error_messages li
+{
+	list-style-type: 	circle;
+}
+
+#coord_signup,
+#user_signup
+{
+	border: 			2px solid #cccccc;
+    padding: 			10px;
+    border-radius: 		4px;
+    margin: 			2px;
+    box-shadow: 		2px 2px 6px rgba(0, 0, 0, 0.44);
+    background-color: 	#f7f7f7;
+}
+
+/**/
+
+
+/* Campos específicos em formulários */
+
+#modal_login .label
+{
+	width:				100px;	
+}
+
+#coord_signup .label,
+#user_signup .label
+{
+	min-width:			200px;	
+}
+/**/
+
+
+/* Genéricos */
 td
 {
-  vertical-align:   top;
+	vertical-align:   	top;
 }
+
+hr
+{
+	background-color:	#cccccc;
+	border:				1px solid #cccccc;
+	height:				1px;
+}
+
+.button button,
+.button input[type=submit]
+{
+	min-width:			60px;
+}
+/**/

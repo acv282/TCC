@@ -1,45 +1,74 @@
 <h2>Sign up</h2>
 
 <%= form_for @user do |f| %>
-  
-  <!-- Tratamento de erros -->
-  <% if @user.errors.any? %>
-    <div class="error_messages">
-      <p>Please, note that:</p>
-      <ul>
-        <% @user.errors.each_with_index do |msg, i| %>
-          <li><%= msg[1] %></li>
-        <% end %>
-      </ul>
-      <!-- Erros completos -->
-      <!--
-      <% @user.errors.full_messages.each do |m| %>
-        <%= m %>
-      <% end %> 
-      -->
-    </div>
-  <% end %>
-  
-  
-  <!-- Campos do formulario -->
-  <%= f.label "Username" %><br/>
-  <%= f.text_field :nomeUsuario %><br/><br/>
-  
-  <%= f.label "Display Name" %><br/>
-  <%= f.text_field :nomeExibicao %><br/><br/>
 
-  <%= f.label "E-mail" %><br/>
-  <%= f.text_field :email %><br/><br/>
-  
-  <%= f.label "Password" %><br/>
-  <%= f.password_field :senha %><br/><br/>
-  
-  <%= f.label "Password Confirmation" %><br/>
-  <%= f.password_field :senha_confirmation %><br/><br/>
-  
-  <%= f.submit %>
-  
-<% end %>
+<!-- Campos do formulario -->
+<table id="user_signup">
+	
+	<!-- Tratamento de erros -->
+	<% if @user.errors.any? %>
+	
+	<tr>
+		<td class="error_messages" colspan="2">
+			<p>Please, note that:</p>
+			<ul>
+				<% @user.errors.each_with_index do |msg, i| %>
+				<li><%= msg[1] %></li>
+				<% end %>
+			</ul>
+			<!-- Erros completos (comentados) -->
+			<!--
+				<% @user.errors.full_messages.each do |m| %>
+				<%= m %>
+				<% end %> 
+			-->
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr><br/></td>
+	</tr>
+	
+	<% end %>
+	
+	
+	
+	<tr>
+		<td class="label"><%= f.label "Password Confirmation" %></td>
+		<td class="field"><%= f.password_field :senha_confirmation %></td>
+	</tr>
+	
+	<tr>
+		<td class="label"><%= f.label "Username" %></td>
+		<td class="field"><%= f.text_field :nomeUsuario %></td>
+	</tr>
+	
+	<tr>
+		<td class="label"><%= f.label "Display Name" %></td>
+		<td class="field"><%= f.text_field :nomeExibicao %></td>
+	</tr>
+	
+	<tr>
+		<td class="label"><%= f.label "E-mail" %></td>
+		<td class="field"><%= f.text_field :email %></td>
+	</tr>
+	
+	<tr>
+		<td class="label"><%= f.label "Password" %></td>
+		<td class="field"><%= f.password_field :senha %></td>
+	</tr>
+	
+	<tr>
+		<td class="label"><%= f.label "Password Confirmation" %></td>
+		<td class="field"><%= f.password_field :senha_confirmation %></td>
+	</tr>
+	
+	<tr>
+		<td class="submit" colspan="2"><%= f.submit %></td>
+	</tr>
+	
+	<% end %>
+	
+</table>
 
 <br/><br/>
 <button class="button" onclick="back()">Back</button>
