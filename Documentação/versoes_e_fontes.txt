@@ -17,6 +17,10 @@ http://jqueryui.com
 http://jquery.com
 
 
+Sobre os arquivos (muito importante!):
+https://github.com/The-Sequence-Ontology/Specifications/blob/master/gff3.md
+
+
 Versões -------------------------------------------------
 
 Ruby:
