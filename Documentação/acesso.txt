@@ -1,0 +1,23 @@
+﻿
+É necessário utilizar a VPN ou estar na rede "UFPR_SEPT_BIOINFOLAB", para configurar a VPN, seguir os passos abaixo:
+
+1. Link para download do OpenVPN (caso ainda não tenha instalado): https://200.236.3.122/owncloud/index.php/s/NiJciRN7GkCPaQd
+	Instalação do OpenVPN GUI: 
+	Baixar OpenVPN do link acima informado.
+	A instalação é padrão, só avançar, avançar até sua conclusão.
+	- Configuração:
+	Para o correto funcionamento da vpn é necessário fazer um ajuste no ícone do "OpenVPN GUI" que deve estar no desktop, para que seja executado sempre com direitos de "administrador". 
+	Procedimento: 
+	Clique com o botão direito no ícone "OpenVPN GUI" que está no Desktop, clique em Propriedades, selecione a aba Compatibilidade, e nessa tela marque a última opção: "Executar este programa como administrador", e confirme clicando em OK.
+	
+	Usuário e senha para acesso:
+	usuário:  fungos
+	senha:    FungBio#@20
+	
+2. Depois de estar na rede via VPN ou de forma local, acessar o endereço: http://192.168.2.23:3000/
+	
+	*Obs.: Para facilitar, todas as senhas são a palavra "senha" em minusculo
+	
+	Para acesso como administrador:
+	usuário:	admin
+	senha:		senha
