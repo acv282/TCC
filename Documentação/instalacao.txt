@@ -40,7 +40,7 @@ rake db:seed (Informações abaixo)
 Depois de instalar e executar o rake db:seed, alguns dados serão inseridos nas tabelas, como:
 - Valores iniciais para as tabelas de user_roles / team_roles / organism_statuses 
 - Usuário administrador conforme abaixo:
-	username: admin
+	username: admin@ufpr.br (O nome de usuário é o email, deve-se trocar no arquivo antes da instalação)
 	password: senha
 
 Estará tudo configurado e pronto. Para iniciar a aplicação, basta dar o comando abaixo, ainda na raiz da aplicação:
