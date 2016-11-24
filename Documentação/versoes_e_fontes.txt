@@ -4,7 +4,7 @@ http://www.railsdeveloper.net/2010/06/rails-and-jquery-how-to-integrate-jquery-u
 https://agilewarrior.wordpress.com/2014/04/30/how-include-jquery-ui-in-your-rails-app/
 https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-ruby-on-rails-application-on-ubuntu-14-04
 http://guides.rubyonrails.org/
-
+https://launchschool.com/blog/handling-emails-in-rails
 
 Imagens:
 http://eletrica.ufpr.br/graduacao/imagens/ufpr2.jpg

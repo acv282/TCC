@@ -42,6 +42,8 @@ Depois de instalar e executar o rake db:seed, alguns dados serão inseridos nas 
 - Usuário administrador conforme abaixo:
 	username: admin@ufpr.br (O nome de usuário é o email, deve-se trocar no arquivo antes da instalação)
 	password: senha
+	
+Editar o arquivo app/mailers/application_mailer.rb e trocar o e-mail do remetente
 
 Estará tudo configurado e pronto. Para iniciar a aplicação, basta dar o comando abaixo, ainda na raiz da aplicação:
 rails server (ou rails server -b xxx.xxx.xxx.xxx para executar o servidor no IP do host atual permitindo acesso externo)
