@@ -3,79 +3,128 @@
 <br/>
 
 <fieldset>
-  <legend>Genome Index</legend>
-  <% if @projects.count > 0 %> 
-
-    <table id="table_projects">
-    
-      <tr>
-        <th>Project</th>
-        <th>Oganisms</th>
-        <th>Coordinator</th>
-        <th>Access</th>
-      </tr>
-      
-      <% @projects.each do |prj| %>
-      <tr>
-        <td><%= link_to prj.nome, ajax_view_path(:id => prj.id), :remote => true %></td>
-        <% if prj.organisms.count > 0 %>
-          <td><input type="checkbox" disabled="disabled" checked="checked"/></td>
-        <%else%>
-          <td><input type="checkbox" disabled="disabled"/></td>
-        <%end%>
-        <td><%= prj.user.nomeExibicao %></td>
-        <% if current_user && prj.user_id != current_user.id %>
-          <% if @teams.detect{|t| t["project_id"] == prj.id} %>
-            <% if @teams.detect{|t| t["status_ace"] == true && t["project_id"] == prj.id} %>
-              <td><i>You are already in this project</i></td>
-            <%else%>
-              <td><i>Waiting for approval</i></td>
-            <%end%>
-          <%else%>
-            <td><%= button_to "Ask Access", prj_ask_path(:id => prj.id), :method => :get, :class => "button" %></td>
-          <%end%>
-        <%else%>
-          <% if !current_user %>
-            <td><i>Please login to ask for access</i></td> 
-          <%end%>
-        <%end%>
-      </tr>
-      <% end %>
-      
-    </table>
-
-  <% else %>
-
-    <h4>No projects available yet...</h4>
-
-  <% end %>
+	<legend>Genome Index</legend>
+	<% if @projects.count > 0 %> 
+	
+	<br/>
+	<br/>
+	<div id="proj_items">
+		
+		<!--
+			<table id="table_projects">
+			
+			<tr>
+			<th>Project</th>
+			<th>Oganisms</th>
+			<th>Coordinator</th>
+			<th>Access</th>
+			</tr>
+		-->
+		
+		<% @projects.each do |prj| %>
+		
+		<%
+			# Determina a descricao do status
+			@descr = ""
+			case prj.andamento
+				when "I"
+					@descr = "Started"
+				when "E"
+					@descr = "Ongoing"
+				when "C"
+					@descr = "Completed"
+				when nil
+					@descr = ""
+			end
+			
+			# Saida em HTML no campo descricao, apenas algumas tags
+			@html_descr = sanitize prj.descricao, tags: %w(b i u a p ul ol li br image strong pre), attributes: %w(href class src)
+		%>
+		
+		<h3><%= prj.nome %></h3>
+		
+		<div>
+			
+			<p><b>Project name:</b>&nbsp;<%= prj.nome %></p>
+			<p><b>Status:</b>&nbsp;<%= @descr %></p>
+			<p><b>Owner:</b>&nbsp;<%= prj.user.nomeExibicao %></p>
+			<p><b>Description:</b></p>
+			<div class="box">
+				<p><%= @html_descr %></p>
+			</div>
+			<br/>
+			<%= button_to "Ask Access to this project", prj_ask_path(:id => prj.id), :method => :get, :class => "button" %>
+			
+		</div>
+		<!--
+			<tr>
+			<td><%= link_to prj.nome, ajax_view_path(:id => prj.id), :remote => true %></td>
+			<% if prj.organisms.count > 0 %>
+			<td><input type="checkbox" disabled="disabled" checked="checked"/></td>
+			<%else%>
+			<td><input type="checkbox" disabled="disabled"/></td>
+			<%end%>
+			<td><%= prj.user.nomeExibicao %></td>
+			<% if current_user && prj.user_id != current_user.id %>
+			<% if @teams.detect{|t| t["project_id"] == prj.id} %>
+			<% if @teams.detect{|t| t["status_ace"] == true && t["project_id"] == prj.id} %>
+			<td><i>You are already in this project</i></td>
+			<%else%>
+			<td><i>Waiting for approval</i></td>
+			<%end%>
+			<%else%>
+			<td><%= button_to "Ask Access", prj_ask_path(:id => prj.id), :method => :get, :class => "button" %></td>
+			<%end%>
+			<%else%>
+			<% if !current_user %>
+			<td><i>Please login to ask for access</i></td> 
+			<%end%>
+			<%end%>
+			</tr>
+			
+			
+			</table>
+		-->
+		
+		<% end %>
+	</div>
+	
+	<% else %>
+	
+	<h4>No projects available yet...</h4>
+	
+	<% end %>
+	
+	<br/>
+	<br/>
+	
 </fieldset>
 
 <br/>
 
 <!-- Modal oculto / Exibe detalhes de um projeto específico -->
 <div id="modal_projeto" title="Project Details">
-  <fieldset>
-    <legend id="p_legend"></legend>
-    <table>
-      <tr>
-        <td class="titulo">Project Name:</td>
-        <td class="valor" id="p_name"></td>
-      </tr>
-      <tr>
-        <td class="titulo">Coordinator:</td>
-        <td class="valor" id="p_coord"></td>
-      </tr>
-      <tr>
-        <td class="titulo">Description:</td>
-        <td class="valor" id="p_descr"></td>
-      </tr>
-      <tr>
-        <td class="titulo">Development Status:</td>
-        <td class="valor" id="p_dev"></td>
-      </tr>
-    </table>
-  </fieldset>
+	<fieldset>
+		<legend id="p_legend"></legend>
+		<table>
+			<tr>
+				<td class="titulo">Project Name:</td>
+				<td class="valor" id="p_name"></td>
+			</tr>
+			<tr>
+				<td class="titulo">Coordinator:</td>
+				<td class="valor" id="p_coord"></td>
+			</tr>
+			<tr>
+				<td class="titulo">Description:</td>
+				<td class="valor" id="p_descr"></td>
+			</tr>
+			<tr>
+				<td class="titulo">Development Status:</td>
+				<td class="valor" id="p_dev"></td>
+			</tr>
+		</table>
+	</fieldset>
 </div>
 
 <br/>

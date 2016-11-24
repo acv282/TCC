@@ -1,98 +1,124 @@
 <h2>Administration Page</h2>
 
 <!-- Painel de ações do administardor -->
-<table>
-
-  <!-- Primeira linha -->
-  <tr>
-  
-  <!-- Projetos -->
-    <td class="bloco_acao">
-    
-    <fieldset>
-        <legend>Projects</legend>
-        
-        <% if @projects && @projects.count > 0 %>
-          <table id="table_admin_projects">
-            <% @projects.each do |p| %>
-            <tr>
-              <td>
-                <% if !p.status_ace %>
-                <span class="red">(Removed)</span>&nbsp;
-                <%end%>
-                <%= p.nome %>
-              </td>
-              <td><%= button_to "Edit", team_edit_c_path(:id => usCoord.id), :method => :get, :class => "button" %></td>
-            </tr>
-            <%end%>
-          </table>
-        <% else %>
-          <h4>There is no projects at the moment</h4>
-        <%end%>
-        
-      </fieldset>
-      <br/>
-      
-    </td>
-    
-  
-    <!-- Coordenadores -->
-    <td class="bloco_acao">
-    
-      <fieldset>
-        <legend>Coordinators</legend>
-        
-        <% if @coordinators && @coordinators.count > 0 %>
-          <table id="table_admin_coords">
-            <% @coordinators.each do |c| %>
-            <tr>
-              <td><%= c.nomeExibicao %></td>
-              <td><%= button_to "Edit", coord_approve_path(:id => c.id), :method => :get, :class => "button" %></td>
-            </tr>
-            <%end%>
-          </table>
-        <%else%>
-          <h4>No active coordinator users</h4>
-        <%end%>
-      
-      
-      </fieldset>
-    </td>
-    
-  </tr>
-  
-  <!-- Segunda linha -->
-  <tr>
-  
-    <!-- Novos coordenadores -->
-    <td>
-    
-      <fieldset>
-        <legend>Pending Coordinators Approval</legend>
-        
-        <% if @newCoords && @newCoords.count > 0 %>
-          <table id="table_admin_approval">
-          
-            <% @newCoords.each do |nc| %>
-            <tr>
-              <td><%= nc.nomeExibicao %></td>
-              <td><%= button_to "Edit", coord_approve_path(:id => nc.id), :method => :get, :class => "button" %></td>
-            </tr>
-            <%end%>
-            
-          </table>
-          
-        <%else%>
-          <h4>No coordinator users pending to moderate</h4>
-        <%end%>
-      
-      </fieldset>
-      <br/>
-    </td>
-    
-    <!-- 2ª coluna -->
-    <td></td>
-    
-  </tr>
-  
+<table id="admin_pane" cellspacing="10px">
+	
+	<!-- Primeira linha -->
+	<tr>
+		
+		<!-- Projetos -->
+		<td class="bloco_acao">
+			
+			<div class="titulo">
+				<h3>Projects</h3>
+			</div>
+			
+			<div class="conteudo">
+				
+				<% if @projects && @projects.count > 0 %>
+				<table id="table_admin_projects">
+					<tr class="titulo">
+						<td><b>Project Name</b></td>
+						<td><b>Edit Project</b></td>
+					</tr>
+					<% @projects.each do |p| %>
+					<tr class="conteudo">
+						<td>
+							<% if !p.status_ace %>
+							<span class="red">(Removed)</span>&nbsp;
+							<%end%>
+							<%= p.nome %>
+						</td>
+						<td><%= button_to "Edit", prj_edit_path(:id => p.id), :method => :get, :class => "button" %></td>
+					</tr>
+					<%end%>
+				</table>
+				<% else %>
+				<h4>There is no projects at the moment</h4>
+				<%end%>
+				
+			</div>
+			<br/>
+			
+		</td>
+		
+		
+		<!-- Coordenadores -->
+		<td class="bloco_acao">
+			
+			<div class="titulo">
+				<h3>Coordinators</h3>
+			</div>
+			
+			<div class="conteudo">
+				
+				<% if @coordinators && @coordinators.count > 0 %>
+				<table id="table_admin_coords">
+					
+					<tr class="titulo">
+						<td><b>Coordinator Name</b></td>
+						<td><b>Edit Coordinator</b></td>
+					</tr>
+					
+					<% @coordinators.each do |c| %>
+					<tr class="conteudo">
+						<td><%= c.nomeExibicao %></td>
+						<td><%= button_to "Edit", coord_approve_path(:id => c.id), :method => :get, :class => "button" %></td>
+					</tr>
+					<%end%>
+				</table>
+				<%else%>
+				<h4>No active coordinator users</h4>
+				<%end%>
+				
+			</div>
+			<br/>
+			
+		</td>
+		
+	</tr>
+	
+	<!-- Segunda linha -->
+	<tr>
+		
+		<!-- Novos coordenadores -->
+		<td class="bloco_acao">
+			
+			<div class="titulo">
+				<h3>Pending Coordinators Approval</h3>
+			</div>
+			
+			<div class="conteudo">
+				
+				<% if @newCoords && @newCoords.count > 0 %>
+				<table id="table_admin_approval">
+					
+					<tr class="titulo">
+						<td><b>Coordinator Name</b></td>
+						<td><b>Edit Coordinator</b></td>
+					</tr>
+					
+					<% @newCoords.each do |nc| %>
+					<tr class="conteudo">
+						<td><%= nc.nomeExibicao %></td>
+						<td><%= button_to "Edit", coord_approve_path(:id => nc.id), :method => :get, :class => "button" %></td>
+					</tr>
+					<%end%>
+					
+				</table>
+				
+				<%else%>
+				<h4>No coordinator users pending to moderate</h4>
+				<%end%>
+				
+			</div>
+			<br/>
+			
+		</td>
+		
+		<!-- 2ª coluna -->
+		<td></td>
+		
+	</tr>
+	
 </table>

@@ -8,6 +8,6 @@
 
 user_roles = UserRole.create( [{nivel: 'Administrator', descricao: 'System administrator'},{nivel: 'Coordinator', descricao: 'Project coordinator'},{nivel: 'Common', descricao: 'Common system user'}] )
 
-User.create( [{ user_role_id: '1', nomeUsuario: 'admin', nomeExibicao: 'Administrator', email: 'admin@ufpr.br', senha: 'senha', senha_confirmation: 'senha', permissao: 'A', status_ace: 'true' }] )
+User.create( [{ user_role_id: '1', nomeExibicao: 'Administrator', email: 'admin@ufpr.br', senha: 'senha', senha_confirmation: 'senha', permissao: 'A', status_ace: 'true' }] )
 
 TeamRole.create( [{nivel: 'Researcher', descricao: 'Responsible for researches inside a project. Researchers are able to view private genoma files from projects they belong to.'},{nivel: 'Guest', descricao: 'Guests can be accepted to a project and view files that are available to guests in that project.'}] )

@@ -1,68 +1,97 @@
 <h2>Approve or Reject Coordinator</h2>
 
 <%= form_for @coord do |f| %>
-  
-  <!-- Tratamento de erros -->
-  <% if @coord.errors.any? %>
-    <div class="error_messages">
-      <p>Please, note that:</p>
-      <ul>
+
+<!-- Tratamento de erros -->
+<% if @coord.errors.any? %>
+<div class="error_messages">
+	<p>Please, note that:</p>
+	<ul>
         <% @coord.errors.each_with_index do |msg, i| %>
-          <li><%= msg[1] %></li>
+		<li><%= msg[1] %></li>
         <% end %>
-      </ul>
-      <!-- Erros completos -->
-      <!--
-      <% @coord.errors.full_messages.each do |m| %>
+	</ul>
+	<!-- Erros completos -->
+	<!--
+		<% @coord.errors.full_messages.each do |m| %>
         <%= m %>
-      <% end %> 
-      -->
-    </div>
-  <% end %>
-  
-  
-  <!-- Campos do formulario -->
-  <table>
-    <tr>
-      <td>
-        <p>
-        Use the checkbox below to toogle user activity in the system. Check it to allow as a coordinator.<br/>
-        If you left unchecked, the user will not be able to log on to the system.<br/>
-        If you check the box, the user will be able to log on as a coordinator and you can find it under your "Coordinators" area, in the Administration
-        pane
-        </p>
-        
-        <p><b>User details:</b><br></p>
-        <table>
-          <tr>
-            <td class="label">Name</td>
-            <td><%= @coord.nomeExibicao %></td>
-          </tr>
-          
-          <tr>
-            <td class="label">Username</td>
-            <td><%= @coord.nomeUsuario %></td>
-          </tr>
-          <tr>
-            <td class="label">E-mail</td>
-            <td><%= @coord.email %></td>
-          </tr>
-          
-          <tr>
-            <td class="label">Active Coordinator?</td>
-            <td><%= f.check_box :status_ace %>(check to enable)</td>
-          </tr>
-          
-        </table>
-      </td>
-    </tr>
-  </table>
-  <br/><br/>
-  
-  <%= f.submit "Save" %>
-  
+		<% end %> 
+	-->
+</div>
 <% end %>
 
-<br/><br/>
+
+<!-- Campos do formulario -->
+<table>
+    <tr>
+		<td>
+			<p>
+				Use the checkbox below to toogle user activity in the system. Check it to allow as a coordinator.<br/>
+				If you left unchecked, the user will not be able to log on to the system.<br/>
+				If you check the box, the user will be able to log on as a coordinator and you can find it under your "Coordinators" area, in the Administration
+				pane
+			</p>
+			<br/>
+			
+			<p><b>User details:</b><br></p>
+			<table class="generic">
+				
+				<tr>
+					<td class="label">Name</td>
+					<td class="field"><%= @coord.nomeExibicao %></td>
+				</tr>
+				
+				<tr>
+					<td class="label">E-mail</td>
+					<td class="field"><%= @coord.email %></td>
+				</tr>
+				
+				<tr>
+					<td class="label">Reasons</td>
+					<td class="field"><textarea disabled="disabled" class="textarea_m"><%= @coord.motivo %></textarea></td>
+				</tr>
+				
+				<tr>
+					<td class="label">Active Coordinator?</td>
+					<td class="field"><%= f.check_box :status_ace %>(check to enable)</td>
+				</tr>
+				
+			</table>
+			
+			<br/>
+			<%= f.submit "Save" %>
+			<br/>
+			<hr/>
+			
+		</td>
+	</tr>
+</table>
+
+<% end %>
+
+<table>
+	<tr>
+		<td>
+			<p>
+				You can also delete this coordinator from the system as long as he/she has no projects assigned.<br/>
+				<% if @projects.count && @projects.count == 0 %>
+				<i>(You can delete this user. There is no projects assigned to him/her.)</i><br/>
+				<br/>
+				<%= button_to "Delete User", user_path(:id => @coord.id), :method => :delete, data: { confirm: "This will delete the user permanently. Proceed?"}, :class => "button" %>
+				<% else %>
+				<i>(You can't delete this user. There are projects assigned to him/her. Unassign them first and try again.)</i><br/>
+				<br/>
+				<button disabled="disabled">Delete User</button>
+				<% end %>
+			</p>
+		</td>
+	</tr>
+	
+</table>
+
+
+<br/>
+<hr/>
+<br/>
 <button class="button" onclick="back()">Back</button>
 <br/><br/> 

@@ -22,7 +22,7 @@
     <td class="label">Actions:</td>
     <td>
     <% if @team.status_ace %>
-      <%= button_to "Unassign from this project", team_rem_path(:id => @team.id), :method => :get, data: { confirm: "Are you sure you want to unassign this user of this project?"}, :class => "button" %>
+      <%= button_to "Unassign from this project", team_rem_path(:id => @team.id), :method => :get, data: { confirm: "Are you sure you want to unassign this user from this project?"}, :class => "button" %>
     <%else%>
       <%= button_to "Re-assign into this project", team_reassign_path(:id => @team.id), :method => :get, data: { confirm: "Are you sure you want to re-assign this user to this project?"}, :class => "button" %>
     <%end%>

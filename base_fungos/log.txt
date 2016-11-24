@@ -1,0 +1,5 @@
+== 20161110030347 RemoveNomeUsuarioFromUsers: migrating =======================
+-- remove_column(:users, :nomeUsuario, :string)
+   -> 0.0170s
+== 20161110030347 RemoveNomeUsuarioFromUsers: migrated (0.0171s) ==============
+

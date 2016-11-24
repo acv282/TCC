@@ -2,7 +2,7 @@ class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
       t.integer :user_role_id
-      t.string :nomeUsuario, limit: 20
+      t.string :nomeUsuario, limit: 60
       t.string :nomeExibicao, limit: 40
       t.string :senha
       t.string :senha_salt

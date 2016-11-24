@@ -3,6 +3,7 @@ class ProjectsController < ApplicationController
   require 'date'
 
   # index show new edit create update destroy
+  
   def index
     @projects = Project.all
     

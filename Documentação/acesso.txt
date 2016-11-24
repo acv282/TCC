@@ -19,5 +19,16 @@
 	*Obs.: Para facilitar, todas as senhas são a palavra "senha" em minusculo
 	
 	Para acesso como administrador:
-	usuário:	admin
+	usuário:	admin@ufpr.br
 	senha:		senha
+	
+3. O acesso via SSH ao servidor em que está instalado o sistema é (Na VPN):
+	192.168.2.23 porta 22
+	usuário:	aluno
+	senha:		fungos2016
+	
+4. O acesso ao banco de dados (PostrgreSQL) pode ser feito via SSH, no console, ou via ferramenta (Na VPN):
+	192.168.2.23 porta 5432
+	base:		base_fungos_dev
+	usuário:	aluno
+	senha:		fungos2016
