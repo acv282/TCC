@@ -6,6 +6,7 @@ https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your
 http://guides.rubyonrails.org/
 https://launchschool.com/blog/handling-emails-in-rails
 http://media.pragprog.com/titles/fr_arr/multiple_models_one_form.pdf
+https://github.com/rubyzip/rubyzip
 
 Imagens:
 http://eletrica.ufpr.br/graduacao/imagens/ufpr2.jpg
@@ -48,6 +49,8 @@ rails (4.2.6)
 rake (11.2.2, 10.5.0)
 schema_to_scaffold (0.7.2)
 sqlite3 (1.3.11)
+rubyzip (0.9.9)
+zip (2.0.2)
 
 
 Todas as Gems (se necessário):
