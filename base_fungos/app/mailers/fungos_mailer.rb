@@ -1,0 +1,2 @@
+class FungosMailer < ApplicationMailer
+end

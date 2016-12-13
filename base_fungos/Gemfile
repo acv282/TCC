@@ -25,6 +25,9 @@ gem 'bcrypt'
 # BioRuby
 gem 'bio'
 
+# RubyZIP
+gem 'rubyzip',  "~> 1.1", require: 'zip'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

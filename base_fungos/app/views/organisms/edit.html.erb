@@ -2,68 +2,66 @@
 
 <%= form_for(@organism, :html => {:multipart => true} ) do |f| %>
 
-  <!-- Tratamento de erros -->
-  <% if @organism.errors.any? %>
-    <div class="error_messages">
-      <p>Please, note that:</p>
-      <ul>
+<!-- Tratamento de erros -->
+<% if @organism.errors.any? %>
+<div class="error_messages">
+	<p>Please, note that:</p>
+	<ul>
         <% @organism.errors.each_with_index do |msg, i| %>
-          <li><%= msg[1] %></li>
+		<li><%= msg[1] %></li>
         <% end %>
-      </ul>
-      <!-- Erros completos -->
-      <!--
-      <% @organism.errors.full_messages.each do |m| %>
+	</ul>
+	<!-- Erros completos -->
+	<!--
+		<% @organism.errors.full_messages.each do |m| %>
         <%= m %>
-      <% end %> 
-      -->
-    </div>
-  <% end %>
+		<% end %> 
+	-->
+</div>
+<% end %>
 
 
-  <table class="form">
+<table class="generic" width="100%">
     
     <tr>
-      <td class="label">Project</td>
-      <td class="input">
-        <input type="text" value="<%= @project.nome %>" disabled="disabled"/>
-        <%= f.hidden_field :project_id, :value => @project.id %>
-      </td>
-    </tr>
+		<td class="label" width="280px">Project</td>
+		<td class="field">
+			<input type="text" value="<%= @project.nome %>" disabled="disabled"/>
+			<%= f.hidden_field :project_id, :value => @project.id %>
+		</td>
+	</tr>
     
     <tr>
-      <td class="label">Organism Name</td>
-      <td class="input"><%= f.text_area :nome %></td>
-    </tr>
+		<td class="label">Organism Name</td>
+		<td class="field"><%= f.text_field :nome %></td>
+	</tr>
     
     <tr>
-      <td class="label">Organism Description</td>
-      <td class="input"><%= f.text_area :descricao %></td>
-    </tr>
+		<td class="label">Organism Description</td>
+		<td class="field"><%= f.text_area :descricao, :class => "textarea_m" %></td>
+	</tr>
     
     <!-- Campos do status do organismo -->
-    <%= fields_for :organism_status do |o| %>
-      <tr>
-        <td class="label">Organism Status</td>
-        <td class="input"><%= o.text_area :descricao %></td>
-      </tr>
-      
-      <tr>
+    <%= fields_for :organism_status do |o| %>	
+	<tr>
         <td class="label">Organism Visibility</td>
-        <td class="input"><%= o.select(:visibilidade, options_for_select([ ['Public','P'],['Coordinator only','C'],['Entire Team','E'] ], @organism_status.visibilidade) ) %></td>
-      </tr>
+        <td class="field"><%= o.select(:visibilidade, options_for_select([ ["Public","P"],["Coordinator only","C"],["Entire Team","E"] ], @organism_status.visibilidade) ) %></td>
+	</tr>
     <%end%>
     
     <tr>
-      <td class="label">File Upload (GFF3 or GBK)</td>
-      <td class="input"><%= file_field_tag :file %></td>
-    </tr>
+		<td class="label">File Upload (GBK format only)</td>
+		<td class="field"><%= file_field_tag :file %></td>
+	</tr>
     
     <tr>
-      <td class="label"></td>
-      <td class="input"><br/><%= f.submit %></td>
-    </tr>
-  </table>
+		<td class="label">Last modified</td>
+		<td class="field"><%= @organism.updated_at.in_time_zone("America/Sao_Paulo").strftime("%d/%m/%Y %H:%Mh") %></td>
+	</tr>
+	
+</table>
+
+<p class="button"><%= f.submit %></p>
 
 <% end %>
 

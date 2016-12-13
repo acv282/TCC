@@ -1,34 +1,35 @@
 <h2>Edit "<%= @team.user.nomeExibicao %>" at project "<%= @team.project.nome %>"</h2>
 
-<table>
- 
-  <tr>
-    <td class="label">Name:</td>
-    <td><%= @team.user.nomeExibicao %></td>
-  </tr>
-  <tr>
-    <td class="label">E-mail:</td>
-    <td><%= @team.user.email %></td>
-  </tr>
-  <tr>
-    <td class="label">Project:</td>
-    <td><%= @team.project.nome %></td>
-  </tr>
-  <tr>
-    <td class="label">Role:</td>
-    <td><%= @team.team_role.nivel %></td> 
-  </tr>
-  <tr>
-    <td class="label">Actions:</td>
-    <td>
-    <% if @team.status_ace %>
-      <%= button_to "Unassign from this project", team_rem_path(:id => @team.id), :method => :get, data: { confirm: "Are you sure you want to unassign this user from this project?"}, :class => "button" %>
-    <%else%>
-      <%= button_to "Re-assign into this project", team_reassign_path(:id => @team.id), :method => :get, data: { confirm: "Are you sure you want to re-assign this user to this project?"}, :class => "button" %>
-    <%end%>
-    </td> 
-  </tr>
-  
+<table class="generic">
+	
+	<tr>
+		<td class="label" width="100px">Name:</td>
+		<td class="field"><%= @team.user.nomeExibicao %></td>
+	</tr>
+	<tr>
+		<td class="label">E-mail:</td>
+		<td class="field"><%= @team.user.email %></td>
+	</tr>
+	<tr>
+		<td class="label">Project:</td>
+		<td class="field"><%= @team.project.nome %></td>
+	</tr>
+	<tr>
+		<td class="label">Role:</td>
+		<td class="field"><%= @team.team_role.nivel %></td> 
+	</tr>
+	<tr>
+		<td class="label">Actions:</td>
+		<td>
+			<% if @team.status_ace %>
+			<%= button_to "Unassign from this project", team_rem_path(:id => @team.id), :method => :get, data: { confirm: "Are you sure you want to unassign this user from this project?"}, :class => "button" %>
+			<%else%>
+			<%= button_to "Assign into this project", team_reassign_path(:id => @team.id), :method => :get, data: { confirm: "Are you sure you want to assign this user to this project?"}, :class => "button" %>
+			<%end%>
+			<%= button_to "Delete User", user_path(:id => @team.user.id), :method => :delete, data: { confirm: "This will delete the user permanently. Proceed?"}, :class => "button" %>
+		</td> 
+	</tr>
+	
 </table>
 
 <br/><br/>

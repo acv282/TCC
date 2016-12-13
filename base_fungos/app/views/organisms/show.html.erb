@@ -1,44 +1,75 @@
-<p id="notice"><%= notice %></p>
+<h2>Organism</h2>
 
-<p>
-  <strong>Project:</strong>
-  <%= @organism.project %>
-</p>
+<br/>
 
-<p>
-  <strong>Organism status:</strong>
-  <%= @organism.organism_status %>
-</p>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @organism.nome %>
-</p>
-
-<p>
-  <strong>Descricao:</strong>
-  <%= @organism.descricao %>
-</p>
-
-<p>
-  <strong>Status ace:</strong>
-  <%= @organism.status_ace %>
-</p>
-
-<p>
-  <strong>Stream fasta:</strong>
-  <%= @organism.stream_fasta %>
-</p>
-
-<p>
-  <strong>Stream gbk:</strong>
-  <%= @organism.stream_gbk %>
-</p>
-
-<p>
-  <strong>Stream gff:</strong>
-  <%= @organism.stream_gff %>
-</p>
-
-<%= link_to 'Edit', edit_organism_path(@organism) %> |
-<%= link_to 'Back', organisms_path %>
+<p><b>Organism details:</b><br></p>
+<table class="generic" width="100%">
+	
+	<tr>
+		<td class="label" width="200px">Project Name</td>
+		<td class="field"><%= @organism.project.nome %></td>
+	</tr>
+	
+	<tr>
+		<td class="label">Organism Visibility</td>
+		<td class="field"><%= @organism.organism_status.descricao %></td>
+	</tr>
+	
+	<tr>
+		<td class="label">File name</td>
+		<td class="field"><%= @organism.nome %></td>
+	</tr>
+	
+	<tr>
+		<td class="label">Organism Description</td>
+		<td class="field"><textarea disabled="disabled" class="textarea_m"><%= @organism.descricao %></textarea></td> 
+	</tr>
+	
+	<tr>
+		<td class="label">Available files</td>
+		<td class="field">
+			<% if @organism.stream_fasta %>
+			<p>
+				FASTA: 
+				<%
+					token = "#{@organism.id}|fasta"
+					token = Base64.encode64(token)
+				%>
+			</p>
+			<%= button_to "Download FASTA", download_path(:token => token), :method => :download, :class => "button" %>	
+			<br/>
+			<%end%>
+			
+			<% if @organism.stream_gbk %>
+			<p>
+				GBK:
+				<%
+					token = "#{@organism.id}|gbk"
+					token = Base64.encode64(token)
+				%> 
+			</p>
+			<%= button_to "Download GBK", download_path(:token => token), :method => :download, :class => "button" %>	
+			<br/>
+			<%end%>
+			
+			<% if @organism.stream_gff %>
+			<p>
+				GFF:
+				<%
+					token = "#{@organism.id}|gff"
+					token = Base64.encode64(token)
+				%>  
+			</p>
+			<%= button_to "Download GFF", download_path(:token => token), :method => :download, :class => "button" %>	
+			<br/>
+			<%end%>
+		</td>
+	</tr>
+	
+	</table>
+	
+				
+				<br/><br/>
+				<button class="button" onclick="back()">Back</button>
+				<br/><br/>												

@@ -10,31 +10,27 @@
 	<br/>
 	<div id="proj_items">
 		
-		<!--
-			<table id="table_projects">
-			
-			<tr>
-			<th>Project</th>
-			<th>Oganisms</th>
-			<th>Coordinator</th>
-			<th>Access</th>
-			</tr>
-		-->
-		
 		<% @projects.each do |prj| %>
 		
 		<%
 			# Determina a descricao do status
 			@descr = ""
 			case prj.andamento
-				when "I"
-					@descr = "Started"
-				when "E"
-					@descr = "Ongoing"
-				when "C"
-					@descr = "Completed"
-				when nil
-					@descr = ""
+			when "I"
+			@descr = "Started"
+			when "E"
+			@descr = "Ongoing"
+			when "C"
+			@descr = "Completed"
+			when nil
+			@descr = ""
+			end
+			
+			# Concatena a visibilidade no status
+			if prj.status_ace
+			@descr = "#{@descr} / Public"
+			else
+			@descr = "#{@descr} / Not public"
 			end
 			
 			# Saida em HTML no campo descricao, apenas algumas tags
@@ -45,46 +41,89 @@
 		
 		<div>
 			
-			<p><b>Project name:</b>&nbsp;<%= prj.nome %></p>
-			<p><b>Status:</b>&nbsp;<%= @descr %></p>
-			<p><b>Owner:</b>&nbsp;<%= prj.user.nomeExibicao %></p>
-			<p><b>Description:</b></p>
-			<div class="box">
-				<p><%= @html_descr %></p>
-			</div>
+			<table class="generic" width="100%">
+				
+				<tr>
+					<td class="label" width="200px">Project name</td>
+					<td class="field"><%= prj.nome %></td>
+				</tr>
+				
+				<tr>
+					<td class="label">Status</td>
+					<td class="field"><%= @descr %></td>
+				</tr>
+				
+				<tr>
+					<td class="label">Coordinator</td>
+					<td class="field"><%= prj.user.nomeExibicao %></td>
+				</tr>
+				
+				<tr>
+					<td class="label" colspan="2">Description:</td>
+				</tr>
+				
+				<tr>
+					<td class="field" colspan="2"><div class="box"><p><%= @html_descr %></p></div></td>
+				</tr>
+				
+				<tr>
+					<td class="label">Organisms</td>
+					<% arq = false %>
+					<% if prj.organisms.count > 0 %>
+					
+					<td class="field">
+						<% prj.organisms.each do |org| %>
+						
+						<% if current_user %>
+						<% team = Team.find_by project_id: prj.id, user_id: current_user.id %>
+						<%end%>
+						<% if org.organism_status.visibilidade == "P" || (team && team.status_ace && org.organism_status.visibilidade == "E") || (current_user && current_user.user_role_id == 1) || (current_user && prj.user_id == current_user.id) %>
+						<% arq = true %>
+						<span class="ui-icon-document" width="24" height="24" ></span>
+						<%= link_to "#{org.nome}", show_org_path(:id => org.id), :method => :get %><br/>
+						<%end%>
+						<%end%>
+					</td>
+					
+					<%end%>
+					
+					<% if !arq %>
+					<td class="field">No files</td>
+					<% end %>
+				</tr>
+				
+			</table>
 			<br/>
-			<%= button_to "Ask Access to this project", prj_ask_path(:id => prj.id), :method => :get, :class => "button" %>
 			
-		</div>
-		<!--
-			<tr>
-			<td><%= link_to prj.nome, ajax_view_path(:id => prj.id), :remote => true %></td>
-			<% if prj.organisms.count > 0 %>
-			<td><input type="checkbox" disabled="disabled" checked="checked"/></td>
-			<%else%>
-			<td><input type="checkbox" disabled="disabled"/></td>
-			<%end%>
-			<td><%= prj.user.nomeExibicao %></td>
-			<% if current_user && prj.user_id != current_user.id %>
+			<% if current_user && prj.user_id != current_user.id && current_user.user_role_id != 1 %>
 			<% if @teams.detect{|t| t["project_id"] == prj.id} %>
 			<% if @teams.detect{|t| t["status_ace"] == true && t["project_id"] == prj.id} %>
-			<td><i>You are already in this project</i></td>
+			<td><i>You're already in this project</i></td>
 			<%else%>
 			<td><i>Waiting for approval</i></td>
 			<%end%>
 			<%else%>
-			<td><%= button_to "Ask Access", prj_ask_path(:id => prj.id), :method => :get, :class => "button" %></td>
+			<td><%= button_to "Ask Access to this project", prj_ask_path(:id => prj.id), :method => :get, :class => "button" %></td>
 			<%end%>
 			<%else%>
 			<% if !current_user %>
-			<td><i>Please login to ask for access</i></td> 
+			<td>
+				<div class="ui-widget">
+					<div class="ui-state-highlight ui-corner-all" style="padding: 0 .7em;">
+						<p>
+							<span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+							If you have an account already, please <a href="#" id="login_link_a">login</a> to ask for access to this project.<br/>
+							Otherwise, click the button below to create a new account and join this project (Coordinator approval is needed).<br/>
+						</p>
+					</div>
+				</div>
+				<br/>
+				<%= button_to "Create Account and Ask for Access", prj_ask_path(:id => prj.id), :method => :get, :class => "button" %>
+			</td> 
 			<%end%>
 			<%end%>
-			</tr>
 			
-			
-			</table>
-		-->
+		</div>
 		
 		<% end %>
 	</div>
@@ -101,30 +140,4 @@
 </fieldset>
 
 <br/>
-
-<!-- Modal oculto / Exibe detalhes de um projeto específico -->
-<div id="modal_projeto" title="Project Details">
-	<fieldset>
-		<legend id="p_legend"></legend>
-		<table>
-			<tr>
-				<td class="titulo">Project Name:</td>
-				<td class="valor" id="p_name"></td>
-			</tr>
-			<tr>
-				<td class="titulo">Coordinator:</td>
-				<td class="valor" id="p_coord"></td>
-			</tr>
-			<tr>
-				<td class="titulo">Description:</td>
-				<td class="valor" id="p_descr"></td>
-			</tr>
-			<tr>
-				<td class="titulo">Development Status:</td>
-				<td class="valor" id="p_dev"></td>
-			</tr>
-		</table>
-	</fieldset>
-</div>
-
-<br/>
+<br/>		

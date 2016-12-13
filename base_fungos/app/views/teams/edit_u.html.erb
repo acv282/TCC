@@ -1,0 +1,24 @@
+<h2>Edit user "<%= @user.nomeExibicao %>"</h2>
+
+<table class="generic">
+	
+	<tr>
+		<td class="label" width="100px">Name:</td>
+		<td class="field"><%= @user.nomeExibicao %></td>
+	</tr>
+	<tr>
+		<td class="label">E-mail:</td>
+		<td class="field"><%= @user.email %></td>
+	</tr>
+	<tr>
+		<td class="label">Actions:</td>
+		<td>
+			<%= button_to "Delete User", user_path(:id => @user.id), :method => :delete, data: { confirm: "This will delete the user permanently. Proceed?"}, :class => "button" %>
+		</td> 
+	</tr>
+	
+</table>
+
+<br/><br/>
+<button class="button" onclick="back()">Back</button>
+<br/><br/> 

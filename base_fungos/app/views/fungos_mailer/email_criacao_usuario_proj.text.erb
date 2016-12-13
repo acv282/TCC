@@ -1,0 +1,18 @@
+Hello <%= @proj.user.nomeExibicao %>
+
+As a project coordinator, you must check the following request from a user who wants to join your project.
+
+Project information:
+----------------------------------------------------------------------------------------------------------------------------
+Name: <%= @proj.nome %>
+----------------------------------------------------------------------------------------------------------------------------
+
+
+User information:
+----------------------------------------------------------------------------------------------------------------------------
+Name: <%= @user.nomeExibicao %>
+E-mail: <%= @user.email %>
+Reasons: <%= @user.motivo %>
+----------------------------------------------------------------------------------------------------------------------------
+
+You must logon to your system with your coordinator account and either Accept or Reject this request.

@@ -1,0 +1,137 @@
+<h2>Create account and ask for access in this project</h2>
+
+<%= form_for @user, :url => { :action => "ask_create" } do |u| %>
+
+<p>Your personal information</p>
+
+<!-- Campos do formulario de usuario -->
+<table class="generic" width="100%">
+	
+	<!-- Tratamento de erros -->
+	<% if @user.errors.any? %>
+	
+	<tr>
+		<td class="error_messages" colspan="2">
+			<p>Please, note that:</p>
+			<ul>
+				<% @user.errors.each_with_index do |msg, i| %>
+				<li><%= msg[1] %></li>
+				<% end %>
+			</ul>
+			<!-- Erros completos (comentados) -->
+			<!--
+				<% @user.errors.full_messages.each do |m| %>
+				<%= m %>
+				<% end %> 
+			-->
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr></td>
+	</tr>
+	
+	<% end %>
+	
+	
+	<tr>
+		<td class="label" width="200px">Display Name</td>
+		<td class="field"><%= u.text_field :nomeExibicao %></td>
+	</tr>
+	
+	<tr>
+		<td class="label">E-mail</td>
+		<td class="field"><%= u.text_field :email %></td>
+	</tr>
+	
+	<tr>
+		<td class="label">Password</td>
+		<td class="field"><%= u.password_field :senha %></td>
+	</tr>
+	
+	<tr>
+		<td class="label">Password Confirmation</td>
+		<td class="field"><%= u.password_field :senha_confirmation %></td>
+	</tr>
+	
+	
+</table>
+
+<br/>
+<p>Project's information</p>
+
+
+<!-- Campos do formulario de time (juntar-se ao projeto) -->
+
+<%= fields_for @team do |f| %>
+<table class="generic" width="100%">
+	
+	<!-- Tratamento de erros -->
+	<% if @team.errors.any? %>
+	
+	<tr>
+		<td class="error_messages" colspan="2">
+			<p>Please, note that:</p>
+			<ul>
+				<% @team.errors.each_with_index do |msg, i| %>
+				<li><%= msg[1] %></li>
+				<% end %>
+			</ul>
+			<!-- Erros completos (comentados) -->
+			<!--
+				<% @team.errors.full_messages.each do |m| %>
+				<%= m %>
+				<% end %> 
+			-->
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr><br/></td>
+	</tr>
+	
+	<% end %>
+	
+	<tr>
+		<td class="label" width="200px">Project Name</td>
+		<td class="field">
+			<%= f.text_field :pnome, :value => @project.nome, :readonly => true, :disabled => true %>
+			<%= f.hidden_field :project_id, :value => @project.id %>			
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="label">Coordinator</td>
+		<td class="field"><%= f.text_field :nomeExibicao, :value => @project.user.nomeExibicao, :readonly => true, :disabled => true %></td>
+	</tr>
+	
+	<tr>
+		<td class="label">Creation Date</td>
+		<td class="field"><%= f.date_field :date, :value => @project.dt_ini, :readonly => true, :disabled => true %></td>
+	</tr>
+	
+	<tr>
+		<td class="label">Join as</td>
+		<td class="field"><%= f.select(:team_role_id, options_for_select([ ["Researcher",1] ]) ) %></td>
+	</tr>
+	
+	<tr>
+		<td class="label" colspan="2">Reasons why you want to join this project</td>
+	</tr>
+	
+	<tr>
+		<td class="field" colspan="2"><%= f.text_area :descricao, :class => "textarea_m" %></td>
+	</tr>
+	
+</table>
+
+<br/>
+<%= u.submit "Ask access" %>
+<br/>
+<hr/>
+
+<%end%>
+<%end%>
+
+
+<br/><br/>
+<button class="button" onclick="back()">Back</button>
+<br/><br/> 

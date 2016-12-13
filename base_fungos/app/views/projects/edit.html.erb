@@ -7,14 +7,14 @@
 <div class="error_messages">
 	<p>Please, note that:</p>
 	<ul>
-        <% @project.errors.each_with_index do |msg, i| %>
+		<% @project.errors.each_with_index do |msg, i| %>
 		<li><%= msg[1] %></li>
-        <% end %>
+		<% end %>
 	</ul>
 	<!-- Erros completos -->
 	<!--
 		<% @project.errors.full_messages.each do |m| %>
-        <%= m %>
+		<%= m %>
 		<% end %> 
 	-->
 </div>
@@ -22,57 +22,61 @@
 
 
 <!-- Campos do formulario -->
-<table>
-    <tr>
-		<td>
-			<p>
-				Use the form below to view or modify project information.<br/>
-			</p>
-			<br/>
-			
-			<p><b>Project details:</b><br></p>
-			<table class="generic">
-				
-				<tr>
-					<td class="label">Project Name</td>
-					<td class="field"><%= f.text_field :nome %></td>
-				</tr>
-				
-				<tr>
-					<td class="label">Description</td>
-					<td class="field"><%= f.text_area :descricao, :class => "textarea_l" %></td>
-				</tr>
-				
-				<tr>
-					<td class="label">Start date</td>
-					<td class="field"><%= f.date_field :dt_ini, :readonly => true, :disabled => true %></td>
-				</tr>
-				
-				<tr>
-					<td class="label">Development Status</td>
-					<td class="field"><%= f.select :andamento, options_for_select([ ["Started","I"],["Ongoing","E"],["Completed","C"] ], :selected => @project.andamento ) %></td>
-				</tr>
-				
-				<tr>
-					<td class="label">Project Leader</td>
-					<td class="field">
-						<%= f.collection_select(:user_id, User.all.coord_ativo, :id, :nomeExibicao, :selected => @project.user.id ) %>
-					</td>
-				</tr>
-				
-			</table>
-			
-			<br/>
-			<%= f.submit "Save" %>
-			<br/>
-			<hr/>
-			
+
+<p>
+	Use the form below to view or modify project information.<br/>
+</p>
+<br/>
+
+<p><b>Project details:</b><br></p>
+<table class="generic" width="100%">
+	
+	<tr>
+		<td class="label" width="200px">Project Name</td>
+		<td class="field"><%= f.text_field :nome %></td>
+	</tr>
+	
+	<tr>
+		<td class="label">Description</td>
+		<td class="field"><%= f.text_area :descricao, :class => "textarea_l" %></td>
+	</tr>
+	
+	<tr>
+		<td class="label">Start date</td>
+		<td class="field"><%= f.date_field :dt_ini, :readonly => true, :disabled => true %></td>
+	</tr>
+	
+	<tr>
+		<td class="label">Development Status</td>
+		<td class="field"><%= f.select :andamento, options_for_select([ ["Started","I"],["Ongoing","E"],["Completed","C"] ], :selected => @project.andamento ) %></td>
+	</tr>
+	
+	<tr>
+		<td class="label">Project Leader</td>
+		<td class="field">
+			<% if current_user && current_user.user_role_id == 1 %>
+			<%= f.collection_select(:user_id, User.all.coord_ativo, :id, :nomeExibicao, :selected => @project.user.id ) %>
+			<%else%>
+			<input type="text" value="<%=@project.user.nomeExibicao%>" disabled="disabled" />
+			<%end%>
 		</td>
 	</tr>
+	
+	<tr>
+		<td class="label">Project Visibility</td>
+		<td class="field"><%= f.check_box :status_ace, :value => @project.status_ace %><label for="project_status_ace"> Is this project public (Visible to everyone)?</label></td>
+	</tr>
+	
 </table>
+
+<br/>
+<%= f.submit "Save" %>
+<br/>
+<hr/>
+
 <%end%>
 
-<%= button_to "Delete Project", prj_del_path(:id => :id), :method => :delete, data: { confirm: "This will delete the project. Proceed?"}, :class => "button" %>
+<%= button_to "Delete Project", project_path(:id => @project.id), :method => :delete, data: { confirm: "This will delete the project. Proceed?"}, :class => "button" %>
 
 <br/><br/>
 <button class="button" onclick="back()">Back</button>

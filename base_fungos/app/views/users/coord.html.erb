@@ -66,7 +66,11 @@
 						</td>
 						<td>
 							<% if !usCoord.status_ace %>
+							<% if usCoord.created_at == usCoord.updated_at %>
+							New User
+							<%else%>
 							<span class="red">(Removed)</span>
+							<%end%>
 							<%else%>
 							Assigned
 							<%end%>
@@ -99,42 +103,48 @@
 			
 			<div class="conteudo">
 				<% if @projects && @projects.count > 0 %>
+				
 				<table id="table_coord_files">
 					
 					<% @projects.each do |p| %>
-					<tr>
-						<td><b>Project <%= p.nome %> - Organisms:</b></td>
-						<td></td>
+					
+					<tr class="titulo">
+						<td colspan="2">
+							<p>Project: <%=p.nome%></p>
+						</td>
 					</tr>
 					
 					<% if p.organisms.count > 0 %> 
+					
 					<% p.organisms.each do |o| %>
-					<tr>
+					<tr class="conteudo">
 						<td><%= o.nome %></td>
 						<td><%= button_to "Edit", edit_org_path(:id => o.id), :method => :get, :class => "button" %></td>
 					</tr>
 					<%end%>
+					
 					<%else%>
-					<tr>
-						<td>There is no organisms in this project</td>
-						<td></td>
-					</tr>
-					<%end%>
 					
-					<tr>
-						<td><%= button_to "Create new organism", new_org_path(:id => p.id), :method => :get, :class => "button" %></td>
-						<td></td>
-					</tr>
-					
-					<tr>
-						<td><br/></td>
-						<td></td>
+					<tr class="conteudo">
+						<td colspan="2">There is no organisms in this project</td>
 					</tr>
 					
 					<%end%>
+					
+					<tr class="conteudo">
+						<td colspan="2">
+							<%= button_to "Create new organism", new_org_path(:id => p.id), :method => :get, :class => "button" %>
+						</td>
+					</tr>
+					
+					<tr><td colspan="2"><br/></td></tr>
+					
+					<%end%>
+					
 				</table>
+				
 				<%else%>
-				<h4>No files submitted yet</h4>
+				<h4>No projects / files submitted yet</h4>
 				<%end%>
 			</div>
 			
@@ -151,9 +161,15 @@
 			<div class="conteudo">
 				<% if @teamNovos && @teamNovos.count > 0 %>
 				<table id="table_coord_new_researchers">
+					<tr class="titulo">
+						<td><b>Researcher</b></td>
+						<td><b>At Project...</b></td>
+						<td><b>Edit</b></td>
+					</tr>
 					<% @teamNovos.each do |t| %>
-					<tr>
-						<td><%= t.user.nomeExibicao %> <i>at Project:</i> <%= t.project.nome %></td>
+					<tr class="conteudo">
+						<td><%= t.user.nomeExibicao %></td>
+						<td><%= t.project.nome %></td>
 						<td><%= button_to "Edit", team_edit_a_path(:id => t.id), :method => :get, :class => "button" %></td>
 					</tr>
 					<%end%>
@@ -182,15 +198,26 @@
 			<div class="conteudo">
 				<% if @myTeams && @myTeams.count > 0 %>
 				<table id="table_coord_teams">
+					
+					<tr class="titulo">
+						<td><b>User</b></td>
+						<td><b>Role</b></td>
+						<td><b>Project</b></td>
+						<td><b>Edit</b></td>
+					</tr>
+					
 					<% @myTeams.each do |m| %>
-					<tr>
-						<td>[<%= m.team_role.nivel %>] - <%= m.user.nomeExibicao %> <i>at Project:</i> <%= m.project.nome %></td>
+					<tr class="conteudo">
+						<td><%= m.user.nomeExibicao %></td>
+						<td><%= m.team_role.nivel %></td>
+						<td><%= m.project.nome %></td>
 						<td><%= button_to "Edit", team_edit_c_path(:id => m.id), :method => :get, :class => "button" %></td>
 					</tr>
 					<%end%>
 				</table>
 				<%else%>
-				<h4>You have no teams</h4>
+				<h4>You have no active teams</h4>
+				<p>You need at least one active user (researcher or guest) assigned to a project to assemble a team.</p>
 				<%end%>
 			</div>
 			
@@ -208,9 +235,18 @@
 			<div class="conteudo">
 				<% if @newGuests && @newGuests.count > 0 %>
 				<table id="table_coord_guests">
+					
+					
+					<tr class="titulo">
+						<td><b>Guest</b></td>
+						<td><b>At Project...</b></td>
+						<td><b>Edit</b></td>
+					</tr>
+					
 					<% @newGuests.each do |n| %>
-					<tr>
-						<td><%= n.user.nomeExibicao %> <i>at Project:</i> <%= n.project.nome %></td>
+					<tr class="conteudo">
+						<td><%= n.user.nomeExibicao %></td>
+						<td><%= n.project.nome %></td>
 						<td><%= button_to "Edit", team_edit_a_path(:id => n.id), :method => :get, :class => "button" %></td>
 					</tr>
 					<%end%>

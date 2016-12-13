@@ -1,40 +1,40 @@
 <h2>Include "<%= @team.user.nomeExibicao %>" at project "<%= @team.project.nome %>" under your responsibility</h2>
 
-<table>
- 
-  <tr>
-    <td class="label">User Name:</td>
-    <td><%= @team.user.nomeExibicao %></td>
-  </tr>
-  <tr>
-    <td class="label">E-mail:</td>
-    <td><%= @team.user.email %></td>
-  </tr>
-  <tr>
-    <td class="label">Project:</td>
-    <td><%= @team.project.nome %></td>
-  </tr>
-  <tr>
-    <td class="label">Desired Role:</td>
-    <td><%= @team.team_role.nivel %></td> 
-  </tr>
-  <tr>
-    <td class="label">Form Name:</td>
-    <td><%= @team.nome %></td> 
-  </tr>
-  <tr>
-    <td class="label">Reasons:</td>
-    <td><%= @team.descricao %></td> 
-  </tr>
-  <tr>
-    <td class="label">Actions:</td>
-    <td><%= button_to "Reject", team_destroy_path(:id => @team.id), :method => :get, data: { confirm: "Are you sure you want to reject this user from your project?"}, :class => "button" %></td>
-  </tr>
-  <tr>
-    <td class="label"></td>
-    <td><%= button_to "Accept", team_assign_path(:id => @team.id), :method => :get, data: { confirm: "Are you sure you want to assign this user to your project?"}, :class => "button" %></td> 
-  </tr>
-  
+<table class="generic" width="100%">
+	
+	<tr>
+		<td class="label" width="200px">User Name:</td>
+		<td class="field"><%= @team.user.nomeExibicao %></td>
+	</tr>
+	<tr>
+		<td class="label">E-mail:</td>
+		<td class="field"><%= @team.user.email %></td>
+	</tr>
+	<tr>
+		<td class="label">Project:</td>
+		<td class="field"><%= @team.project.nome %></td>
+	</tr>
+	<tr>
+		<td class="label">Desired Role:</td>
+		<td class="field"><%= @team.team_role.nivel %></td> 
+	</tr>
+	<tr>
+		<td class="label">Form Name:</td>
+		<td class="field"><%= @team.nome %></td> 
+	</tr>
+	<tr>
+		<td class="label">Reasons:</td>
+		<td class="field"><%= @team.descricao %></td> 
+	</tr>
+	<tr>
+		<td class="label">Actions:</td>
+		<td><%= button_to "Reject", team_destroy_path(:id => @team.id), :method => :get, data: { confirm: "Are you sure you want to reject this user from your project?"}, :class => "button" %></td>
+	</tr>
+	<tr>
+		<td class="label"></td>
+		<td><%= button_to "Accept", team_assign_path(:id => @team.id), :method => :get, data: { confirm: "Are you sure you want to assign this user to your project?"}, :class => "button" %></td> 
+	</tr>
+	
 </table>
 
 <br/><br/>

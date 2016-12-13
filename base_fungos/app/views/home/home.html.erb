@@ -1,7 +1,46 @@
 <h2>Home</h2>
 
-<% if !current_user %>
-<p>
-If you are a project coordinator and want to use this system for your own researches, you can <%= link_to "click here to ask for a coordinator role", new_coord_path %>.
-</p>
-<%end%>
+<table class="generic" width="100%">
+	<tr>
+		<td class="field">
+			
+			<h4>Graduate Program in Bioinformatics</h4>
+			<p>
+				Welcome to our bioinformatics project management system. Here you can learn more abount ongoing projects, new projects and finished ones.<br/>
+				Some of them maybe released to public audience, so you can read about it and even download the genoma file in GBK (GenBank) and FASTA file formats (if the organisms are available).<br/>
+			</p>
+			
+			<p>
+				You can checkout for available projects at the "Projects" tab, right above this text, in the navigation bar. There you can engage into a project as a Researcher (as long as you are eligible, a coordinator must 
+				accept your request) or even start your own team for a new research (you must fill the form, explain your reasons and wait for the system administrator to accept you as a coordinator).<br/>
+				You can create projects, set a description for them, create organisms, upload files and ask for your researchers to access this system and ask (by filling the corresponding form) for a researcher role in your project.
+				Also, you can choose which organisms are particular to you, your research team or visible to everyone.
+			</p>
+			
+			<br/>
+			<h4>What is this system about?</h4>
+			<p>
+				The main purpose of this system, as pointed out above, is to provide you with a tool for research teams management and also some Genoma files manipulation. Here you can upload files in GenBank format (GBK) and the file will
+				be automatically converted to a FASTA protein format and both the GBK original input and output FASTA file will then be compressed. So our database is more reliable because you can detect a download file corruption at the moment you 
+				open the ZIP file (ZIP files contains an integrated checksum mechanism that shows you wheter a file is corrupted or not) and also smaller; because genetic file structures (except by their headers) are mainly composed by four letters: CGAT for 
+				Cytosine, Guanine, Adenine and Thymine (for DNA variants) and CGAU for the same first three bases and Uracil for the U letter (in this case, representing the RNA notation) and it results in a better compression. 
+				This letters are used in different combinations along the entire file, but they can repeat the order several times. Each time it happens, the ZIP file algorithm is capable of grouping the repeating blocks in a indexed structure and
+				store references of those blocks, so the resulting file is smaller than the original but stores the same information. All you need is a ZIP manipulation program that you can find for free in the internet.<br/>
+				It also helps in the database backup procedure, by being smaller, it can be stored faster than a tradicional plain-text storage format and the system administrator can check the files integrity by using ZIP files checksum methods 
+				(not implemented in the system, must be done in the backup tool), so your organisms files are more secure.
+			</p>
+			
+			<br/>
+			
+			<% if !current_user %>
+			<h4>Want to join our system?</h4>
+			<p>
+				You can check the available projects at the Projects tab an engage into one of them, or...<br/>
+				If you are a project coordinator and want to use this system for your own researches, you can <%= link_to "click here to ask for a coordinator role", new_coord_path %>.
+			</p>
+			<br/>
+			<%end%>
+			
+		</td>
+	</tr>	
+</table>	

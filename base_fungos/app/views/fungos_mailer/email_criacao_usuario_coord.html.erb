@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+	</head>
+	<body>
+		<h1>Hello <%= @admin.nomeExibicao %></h1>
+		<p>As an administrator, you must check the following request from a user who wants to be a Project Coordinator in your system.</p>
+		<p>
+			<b>User information:</b><br/>
+			Name: <%= @user.nomeExibicao %><br/>
+			E-mail: <%= @user.email %><br/>
+			Reasons: <%= @user.motivo %><br/>
+		</p>
+		<p>
+			You must logon to your system with your administrator account and either Accept or Reject this request.
+		</p>
+	</body>
+</html>

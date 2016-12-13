@@ -4,11 +4,16 @@ function init()
 {
 	
 	// Modal do popup de login
-	$("#modal_login").dialog({ modal: true, autoOpen: false, width: 320, height: 170 });
+	$("#modal_login").dialog({ modal: true, autoOpen: false, width: 420, height: 170 });
 	
 	$("#login_link").click(function(){
 		$("#modal_login").dialog("open");  
 	});
+	
+	$("#login_link_a").click(function(){
+		$("#modal_login").dialog("open");  
+	});
+	
 	
 	// Transforma os botões da tela em... botões
 	$("button").button();

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+	</head>
+	<body>
+		<h1>Hello <%= @proj.user.nomeExibicao %></h1>
+		<p>As a project coordinator, you must check the following request from a user who wants to join your project.</p>
+		<p>
+			<b>Project information:</b><br/>
+			Name: <%= @proj.nome %><br/>
+		</p>
+		<p>
+			<b>User information:</b><br/>
+			Name: <%= @user.nomeExibicao %><br/>
+			E-mail: <%= @user.email %><br/>
+			Reasons: <%= @user.motivo %><br/>
+		</p>
+		<p>
+			You must logon to your system with your coordinator account and either Accept or Reject this request.
+		</p>
+	</body>
+</html>

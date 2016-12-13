@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
 	
 	# Relacoes de dependencia
 	belongs_to :user_role
+	has_many :teams
+	has_one :project
+	accepts_nested_attributes_for :teams
 	
 	# Filtros
 	# Usuarios do coordenador (por id)
@@ -34,6 +37,7 @@ class User < ActiveRecord::Base
 	#--
 	#attr_accessible :email, :password, :password_confirmation
 	attr_accessor :senha_confirmation
+	attr_accessor :senha_ant
 	
 	before_save :antes_salvar
 	
